@@ -15,22 +15,17 @@ title: トップページ
             <h2 class="section-title">Latest Updates - 最新の記録</h2>
             <div class="updates-grid-container">
 
-                <!-- OUR STORYの最新記事を自動表示 -->
-                {% assign our_story_posts = site.posts | where: "category", "our_story" | sort: "date" | reverse %}
-                {% assign latest_our_story = our_story_posts | first %}
-                {% if latest_our_story %}
+                <!-- OUR STORYの最新記事（手動設定） -->
                 <div class="update-card">
                     <span class="update-label story-label">OUR STORY</span>
-                    <a href="{{ latest_our_story.url | relative_url }}">
-                        <h3>{{ latest_our_story.title }}</h3>
-                        <p>{{ latest_our_story.excerpt | strip_html | truncate: 80 }}</p>
+                    <a href="{{ '/blog/challenge/challenge-step-1.html' | relative_url }}">
+                        <h3>アラフィフ親父でも出来た。～サイト作成の全記録～</h3>
+                        <p>PC素人、二日酔い、そしてAI…。知識ゼロから、このサイトが完成するまでの、悪戦苦闘と、ほんの少しの感動の全記録。</p>
                     </a>
                 </div>
-                {% endif %}
 
                 <!-- OUR LOGSの最新記事を自動表示 -->
-                {% assign logs_posts = site.posts | where: "category", "logs" | sort: "date" | reverse %}
-                {% assign latest_log = logs_posts | first %}
+                {% assign latest_log = site.categories.logs | first %}
                 {% if latest_log %}
                 <div class="update-card">
                     <span class="update-label logs-label">OUR LOGS</span>
@@ -42,8 +37,7 @@ title: トップページ
                 {% endif %}
 
                 <!-- TWEETの最新記事を自動表示 -->
-                {% assign tweet_posts = site.posts | where: "category", "tweet" | sort: "date" | reverse %}
-                {% assign latest_tweet = tweet_posts | first %}
+                {% assign latest_tweet = site.categories.tweet | first %}
                 {% if latest_tweet %}
                 <div class="update-card">
                     <span class="update-label tweet-label">日々のつぶやき</span>
@@ -57,7 +51,6 @@ title: トップページ
             </div>
         </section>
 
-        <!-- (これ以降のセクションは、今までと同じです) -->
         <section class="section intro">
             <p><strong>『やってみると、なんとかなるもんだな。』</strong></p>
             <p>このサイトは、様々な経験をしてきたアラフィフ親父が、AIという、<br>新しい相棒と悪戦苦闘しながら、日々の学びや気づきを発信する場所です。<br>『たまに登場』するアラサーマダムの前向きな奮闘記にもご期待ください。</p>
@@ -67,12 +60,25 @@ title: トップページ
         <section class="section">
             <h2 class="section-title">Categories - カテゴリー</h2>
             <div class="category-buttons">
-                <!-- カテゴリボタンのリンクは、Jekyllの魔法で書くのがベスト -->
-                <a href="{{ site.baseurl }}/category/category-ai-challenge.html" class="category-btn ai-btn">#AI奮闘記</a>
-                <!-- 他のボタンも同様に... -->
+                <a href="{{ '/category/category-ai-challenge.html' | relative_url }}" class="category-btn ai-btn">#AI奮闘記</a>
+                <a href="{{ '/category/category-money.html' | relative_url }}" class="category-btn">#お金</a>
+                <!-- 他のボタンも同様に、Jekyllの魔法でリンクを設定 -->
             </div>
         </section>
-
-        <!-- Galleryとmain-buttonは省略 -->
+        
+        <section class="section">
+            <h2 class="section-title">Gallery - イメージ</h2>
+            <div class="gallery">
+                <img src="https://i.gyazo.com/bd47864dd1e23157e17424269d0d3810.jpg" alt="お金・投資のイメージ">
+                <img src="https://i.gyazo.com/cdd010f3c5301824362a26c48398e0ab.jpg" alt="マリンスポーツのイメージ">
+                <img src="https://i.gyazo.com/13813c0b116d4838637edb56950fefab.jpg" alt="DIYのイメージ">
+                <img src="https://i.gyazo.com/c6e3b56a591e0a969335f66107c13251.jpg" alt="家族キャンプのイメージ">
+                <img src="https://i.gyazo.com/6c65373a033f789d7b40939527ec3d9e.jpg" alt="PC・プログラミングのイメージ">
+            </div>
+        </section>
+        
+        <a href="{{ '/matome/matome-list.html' | relative_url }}" class="main-button">
+            Python自動生成 まとめサイト一覧へ
+        </a>
     </main>
 </div>
