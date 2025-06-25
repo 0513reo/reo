@@ -62,4 +62,54 @@ body { font-family: 'Noto Sans JP', sans-serif; margin: 0; background-color: #f9
 @media (max-width: 768px) { 
     .updates-grid-container { flex-direction: column; } 
     .hero-latest-post { width: 90%; } 
+}/* --- トップページ：最新アップデートセクション --- */
+.updates-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
+.update-card {
+    background-color: #fcfdff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 25px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex; /* Flexboxで中身を整える */
+    flex-direction: column;
+}
+.update-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.15);
+}
+.update-card a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* aタグがカード全体に広がるように */
+}
+.update-card h3 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    color: #333;
+}
+.update-card p {
+    font-size: 1em;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 0;
+    flex-grow: 1; /* pが残りの空間を埋める */
+}
+.update-label {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 700;
+    color: white;
+    align-self: flex-start; /* ラベルを左上に固定 */
+}
+.story-label { background-color: #e74c3c; } /* 赤系 */
+.logs-label { background-color: #3498db; }  /* 青系 */
+.tweet-label { background-color: #2ecc71; } /* 緑系 */
