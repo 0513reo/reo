@@ -4,62 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python自動生成 まとめサイト一覧</title>
-
-    <!-- Google Fontsと、共通のデザイン指示書（CSS）を呼び出す -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@700&display=swap" rel="stylesheet">
-    
     <!-- ★★★ 共通のデザイン指示書（style.css）を呼び出す ★★★ -->
-    <!-- このページはmatomeフォルダの中にあるので、1つ上の階層(../)にあるstyle.cssを指す -->
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../assets/style.css"> 
 </head>
 <body>
     <div class="container">
         <header>
-            <!-- ★★★ トップページと同じh1のデザインを適用 ★★★ -->
             <h1 class="section-title" style="font-size: 2.5em; border-bottom: 4px solid #4a90e2; padding-bottom: 15px;">Python自動生成 まとめサイト一覧</h1>
         </header>
 
-        <div class="special-link">
+        <div class="special-link" style="text-align: center; margin: 30px 0;">
             <!-- ★★★ リンク先をフォルダ構造に合わせて修正 ★★★ -->
-            <a href="./matome_page.html" class="special-button">ひとり言（このサイトについて）</a>
+            <a href="./matome_page.html" class="main-button" style="background-color: #2ecc71; display: inline-block; width: auto;">ひとり言（このサイトについて）</a>
         </div>
 
         <h2 class="section-title" style="margin-top: 50px;">作成済みまとめサイト一覧</h2>
 
-        <div class="link-container">
+        <div class="updates-grid-container">
             <!-- ▼▼▼【重要】すべてのリンクを、フォルダ構造に合わせて修正しました ▼▼▼ -->
             
-            <a href="./明日は笑う仕事術.html" class="card">
+            <a href="./明日は笑う仕事術.html" class="update-card">
                 <h3>明日は笑う 仕事術</h3>
                 <p>仕事の効率を上げ、アポイント獲得のコツなどをまとめたサイトです。</p>
             </a>
 
-            <a href="./副業AI活用まとめ.html" class="card">
+            <a href="./副業AI活用まとめ.html" class="update-card">
                 <h3>副業・AI活用 (New!)</h3>
                 <p>AIを活用して収入をアップさせるための情報を、10サイトからまとめた最新版です。</p>
             </a>
 
-            <a href="./生活AI活用まとめ.html" class="card">
+            <a href="./生活AI活用まとめ.html" class="update-card">
                 <h3>生活を楽にするAI活用</h3>
                 <p>家事など、日々の生活をAIで楽にするアイデアをまとめたサイトです。</p>
             </a>
 
-            <a href="./まとめサイト.html" class="card">
+            <a href="./まとめサイト.html" class="update-card">
                 <h3>Python自動化</h3>
                 <p>Pythonを使った自動化の事例をまとめた、一番最初のサイトです。</p>
             </a>
-
-            <!-- 新しいサイトを作ったら、この上にある<a href=...>...</a>の塊をコピーして、
-                 ファイル名と説明文を書き換えて、ここに追加していきましょう！ -->
         </div>
 
         <div class="back-link" style="text-align: center; margin-top: 50px;">
-            <!-- ★★★ トップページに戻るリンクを追加 ★★★ -->
             <a href="../index.html" class="main-button" style="display: inline-block; width: auto;">« トップページに戻る</a>
         </div>
-
     </div>
 </body>
 </html>
