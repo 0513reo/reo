@@ -1,0 +1,78 @@
+---
+layout: default
+title: トップページ
+---
+<div class="container">
+    
+    <header class="hero">
+        <h1>40代？アラフィフ親父と<br>30代アラサーミセスの挑戦</h1>
+        <p>AI・副業・悩み・ギャップ・営業・4つの財布・不労所得・モンハン<br>時短・釣り・不動産・そして日々の奮闘。誰かの何かの参考になれば</p>
+    </header>
+
+    <main>
+        <!-- ▼▼▼【ここからが、新しい自動更新セクションです！】▼▼▼ -->
+        <section class="section">
+            <h2 class="section-title">Latest Updates - 最新の記録</h2>
+            <div class="updates-grid-container">
+
+                <!-- OUR STORYの最新記事を自動表示 -->
+                {% assign our_story_posts = site.posts | where: "category", "our_story" | sort: "date" | reverse %}
+                {% assign latest_our_story = our_story_posts | first %}
+                {% if latest_our_story %}
+                <div class="update-card">
+                    <span class="update-label story-label">OUR STORY</span>
+                    <a href="{{ latest_our_story.url | relative_url }}">
+                        <h3>{{ latest_our_story.title }}</h3>
+                        <p>{{ latest_our_story.excerpt | strip_html | truncate: 80 }}</p>
+                    </a>
+                </div>
+                {% endif %}
+
+                <!-- OUR LOGSの最新記事を自動表示 -->
+                {% assign logs_posts = site.posts | where: "category", "logs" | sort: "date" | reverse %}
+                {% assign latest_log = logs_posts | first %}
+                {% if latest_log %}
+                <div class="update-card">
+                    <span class="update-label logs-label">OUR LOGS</span>
+                    <a href="{{ latest_log.url | relative_url }}">
+                        <h3>{{ latest_log.title }}</h3>
+                        <p>{{ latest_log.excerpt | strip_html | truncate: 80 }}</p>
+                    </a>
+                </div>
+                {% endif %}
+
+                <!-- TWEETの最新記事を自動表示 -->
+                {% assign tweet_posts = site.posts | where: "category", "tweet" | sort: "date" | reverse %}
+                {% assign latest_tweet = tweet_posts | first %}
+                {% if latest_tweet %}
+                <div class="update-card">
+                    <span class="update-label tweet-label">日々のつぶやき</span>
+                    <a href="{{ latest_tweet.url | relative_url }}">
+                        <h3>{{ latest_tweet.title }}</h3>
+                        <p>{{ latest_tweet.excerpt | strip_html | truncate: 80 }}</p>
+                    </a>
+                </div>
+                {% endif %}
+
+            </div>
+        </section>
+
+        <!-- (これ以降のセクションは、今までと同じです) -->
+        <section class="section intro">
+            <p><strong>『やってみると、なんとかなるもんだな。』</strong></p>
+            <p>このサイトは、様々な経験をしてきたアラフィフ親父が、AIという、<br>新しい相棒と悪戦苦闘しながら、日々の学びや気づきを発信する場所です。<br>『たまに登場』するアラサーマダムの前向きな奮闘記にもご期待ください。</p>
+            <p class="note">※時間がかかったり、まだ現在挑戦中なことの方が多いです。</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Categories - カテゴリー</h2>
+            <div class="category-buttons">
+                <!-- カテゴリボタンのリンクは、Jekyllの魔法で書くのがベスト -->
+                <a href="{{ site.baseurl }}/category/category-ai-challenge.html" class="category-btn ai-btn">#AI奮闘記</a>
+                <!-- 他のボタンも同様に... -->
+            </div>
+        </section>
+
+        <!-- Galleryとmain-buttonは省略 -->
+    </main>
+</div>
