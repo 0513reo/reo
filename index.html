@@ -10,22 +10,27 @@ title: トップページ
     </header>
 
     <main>
-        <!-- ▼▼▼【ここからが、新しい自動更新セクションです！】▼▼▼ -->
+        <!-- ▼▼▼【ここからが、究極の自動更新セクションです！】▼▼▼ -->
         <section class="section">
             <h2 class="section-title">Latest Updates - 最新の記録</h2>
             <div class="updates-grid-container">
 
-                <!-- OUR STORYの最新記事（手動設定） -->
+                <!-- OUR STORYの最新記事を自動表示 -->
+                <!-- ★★★「すべてのページ」から、名札を頼りに探す魔法！★★★ -->
+                {% assign our_story_posts = site.pages | where: "category", "our_story" | default: site.posts | where: "category", "our_story" | sort: "date" | reverse %}
+                {% assign latest_our_story = our_story_posts[0] %}
+                {% if latest_our_story %}
                 <div class="update-card">
                     <span class="update-label story-label">OUR STORY</span>
-                    <a href="{{ '/blog/challenge/challenge-step-1.html' | relative_url }}">
-                        <h3>アラフィフ親父でも出来た。～サイト作成の全記録～</h3>
-                        <p>PC素人、二日酔い、そしてAI…。知識ゼロから、このサイトが完成するまでの、悪戦苦闘と、ほんの少しの感動の全記録。</p>
+                    <a href="{{ latest_our_story.url | relative_url }}">
+                        <h3>{{ latest_our_story.title }}</h3>
+                        <p>{{ latest_our_story.content | strip_html | truncate: 80 }}</p>
                     </a>
                 </div>
+                {% endif %}
 
                 <!-- OUR LOGSの最新記事を自動表示 -->
-                {% assign latest_log = site.categories.logs | first %}
+                {% assign latest_log = site.categories.logs[0] %}
                 {% if latest_log %}
                 <div class="update-card">
                     <span class="update-label logs-label">OUR LOGS</span>
@@ -37,7 +42,7 @@ title: トップページ
                 {% endif %}
 
                 <!-- TWEETの最新記事を自動表示 -->
-                {% assign latest_tweet = site.categories.tweet | first %}
+                {% assign latest_tweet = site.categories.tweet[0] %}
                 {% if latest_tweet %}
                 <div class="update-card">
                     <span class="update-label tweet-label">日々のつぶやき</span>
@@ -51,6 +56,7 @@ title: トップページ
             </div>
         </section>
 
+        <!-- (これ以降のセクションは、今までと同じです) -->
         <section class="section intro">
             <p><strong>『やってみると、なんとかなるもんだな。』</strong></p>
             <p>このサイトは、様々な経験をしてきたアラフィフ親父が、AIという、<br>新しい相棒と悪戦苦闘しながら、日々の学びや気づきを発信する場所です。<br>『たまに登場』するアラサーマダムの前向きな奮闘記にもご期待ください。</p>
@@ -60,9 +66,10 @@ title: トップページ
         <section class="section">
             <h2 class="section-title">Categories - カテゴリー</h2>
             <div class="category-buttons">
+                <!-- カテゴリボタンのリンクは、Jekyllの魔法で書くのがベスト -->
                 <a href="{{ '/category/category-ai-challenge.html' | relative_url }}" class="category-btn ai-btn">#AI奮闘記</a>
                 <a href="{{ '/category/category-money.html' | relative_url }}" class="category-btn">#お金</a>
-                <!-- 他のボタンも同様に、Jekyllの魔法でリンクを設定 -->
+                <!-- 他のボタンも同様に... -->
             </div>
         </section>
         
