@@ -11,62 +11,61 @@ title: トップページ
     </header>
 
     <main>
-        <!-- ▼▼▼【究極の自動更新セクション！これが最終版です！】▼▼▼ -->
         <section class="section">
             <h2 class="section-title">Latest Updates - 最新の記録</h2>
             <div class="updates-grid-container">
 
                 <!-- OUR STORYの最新記事を自動表示 -->
-                <!-- ★★★ 日付順に並び替えて、一番新しいものを表示！ ★★★ -->
-                {% assign latest_our_story = site.our_story | sort: "date" | reverse | first %}
+                {% assign latest_our_story = site.our_story | last %}
                 {% if latest_our_story %}
                 <div class="update-card">
-                    <div class="update-card-content">
-                        <span class="update-label story-label">OUR STORY</span>
-                        <a href="{{ latest_our_story.url | relative_url }}">
+                    <!-- ★★★【あなたの最高のアイデア！】カード全体のリンク先を、アーカイブページに変更！ ★★★ -->
+                    <a href="{{ '/our-story-archive.html' | relative_url }}">
+                        <div class="update-card-content">
+                            <span class="update-label story-label">OUR STORY</span>
                             <h3>{{ latest_our_story.title }}</h3>
                             <p>{{ latest_our_story.content | strip_html | truncate: 80 }}</p>
-                        </a>
-                    </div>
-                    <div class="archive-link">
-                        <a href="{{ '/our-story-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
-                    </div>
+                        </div>
+                        <div class="archive-link">
+                            <span>このシリーズの全記録へ »</span>
+                        </div>
+                    </a>
                 </div>
                 {% endif %}
 
                 <!-- OUR LOGSの最新記事を自動表示 -->
-                <!-- ★★★ 日付順に並び替えて、一番新しいものを表示！ ★★★ -->
-                {% assign latest_log = site.logs | sort: "date" | reverse | first %}
+                {% assign latest_log = site.logs | last %}
                 {% if latest_log %}
                 <div class="update-card">
-                     <div class="update-card-content">
-                        <span class="update-label logs-label">OUR LOGS</span>
-                        <a href="{{ latest_log.url | relative_url }}">
+                    <!-- ★★★【あなたの最高のアイデア！】カード全体のリンク先を、アーカイブページに変更！ ★★★ -->
+                    <a href="{{ '/logs-archive.html' | relative_url }}">
+                         <div class="update-card-content">
+                            <span class="update-label logs-label">OUR LOGS</span>
                             <h3>{{ latest_log.title }}</h3>
                             <p>{{ latest_log.content | strip_html | truncate: 80 }}</p>
-                        </a>
-                    </div>
-                    <div class="archive-link">
-                        <a href="{{ '/logs-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
-                    </div>
+                        </div>
+                        <div class="archive-link">
+                            <span>このシリーズの全記録へ »</span>
+                        </div>
+                    </a>
                 </div>
                 {% endif %}
 
                 <!-- TWEETの最新記事を自動表示 -->
-                <!-- ★★★ 日付順に並び替えて、一番新しいものを表示！ ★★★ -->
-                {% assign latest_tweet = site.tweets | sort: "date" | reverse | first %}
+                {% assign latest_tweet = site.tweets | last %}
                 {% if latest_tweet %}
                 <div class="update-card">
-                    <div class="update-card-content">
-                        <span class="update-label tweet-label">日々のつぶやき</span>
-                        <a href="{{ latest_tweet.url | relative_url }}">
+                    <!-- ★★★【あなたの最高のアイデア！】カード全体のリンク先を、アーカイブページに変更！ ★★★ -->
+                    <a href="{{ '/tweets-archive.html' | relative_url }}">
+                        <div class="update-card-content">
+                            <span class="update-label tweet-label">日々のつぶやき</span>
                             <h3>{{ latest_tweet.title }}</h3>
                             <p>{{ latest_tweet.content | strip_html | truncate: 80 }}</p>
-                        </a>
-                    </div>
-                    <div class="archive-link">
-                        <a href="{{ '/tweets-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
-                    </div>
+                        </div>
+                        <div class="archive-link">
+                            <span>このシリーズの全記録へ »</span>
+                        </div>
+                    </a>
                 </div>
                 {% endif %}
 
