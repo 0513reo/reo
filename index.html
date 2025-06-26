@@ -19,17 +19,18 @@ title: トップページ
                 {% assign latest_our_story = site.our_story | last %}
                 {% if latest_our_story %}
                 <div class="update-card">
-                    <!-- ★★★【あなたの最高のアイデア！】カード全体のリンク先を、アーカイブページに変更！ ★★★ -->
-                    <a href="{{ '/our-story-archive.html' | relative_url }}">
+                    <!-- ★★★【あなたの最高のアイデア！】カードの大部分は最新記事へリンク ★★★ -->
+                    <a href="{{ latest_our_story.url | relative_url }}" class="update-card-main-link">
                         <div class="update-card-content">
                             <span class="update-label story-label">OUR STORY</span>
                             <h3>{{ latest_our_story.title }}</h3>
                             <p>{{ latest_our_story.content | strip_html | truncate: 80 }}</p>
                         </div>
-                        <div class="archive-link">
-                            <span>このシリーズの全記録へ »</span>
-                        </div>
                     </a>
+                    <!-- ★★★ そして、アーカイブへのリンクは別に用意！ ★★★ -->
+                    <div class="archive-link">
+                        <a href="{{ '/our-story-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
+                    </div>
                 </div>
                 {% endif %}
 
@@ -37,17 +38,16 @@ title: トップページ
                 {% assign latest_log = site.logs | last %}
                 {% if latest_log %}
                 <div class="update-card">
-                    <!-- ★★★【あなたの最高のアイデア！】カード全体のリンク先を、アーカイブページに変更！ ★★★ -->
-                    <a href="{{ '/logs-archive.html' | relative_url }}">
+                    <a href="{{ latest_log.url | relative_url }}" class="update-card-main-link">
                          <div class="update-card-content">
                             <span class="update-label logs-label">OUR LOGS</span>
                             <h3>{{ latest_log.title }}</h3>
                             <p>{{ latest_log.content | strip_html | truncate: 80 }}</p>
                         </div>
-                        <div class="archive-link">
-                            <span>このシリーズの全記録へ »</span>
-                        </div>
                     </a>
+                    <div class="archive-link">
+                        <a href="{{ '/logs-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
+                    </div>
                 </div>
                 {% endif %}
 
@@ -55,17 +55,16 @@ title: トップページ
                 {% assign latest_tweet = site.tweets | last %}
                 {% if latest_tweet %}
                 <div class="update-card">
-                    <!-- ★★★【あなたの最高のアイデア！】カード全体のリンク先を、アーカイブページに変更！ ★★★ -->
-                    <a href="{{ '/tweets-archive.html' | relative_url }}">
+                    <a href="{{ latest_tweet.url | relative_url }}" class="update-card-main-link">
                         <div class="update-card-content">
                             <span class="update-label tweet-label">日々のつぶやき</span>
                             <h3>{{ latest_tweet.title }}</h3>
                             <p>{{ latest_tweet.content | strip_html | truncate: 80 }}</p>
                         </div>
-                        <div class="archive-link">
-                            <span>このシリーズの全記録へ »</span>
-                        </div>
                     </a>
+                    <div class="archive-link">
+                        <a href="{{ '/tweets-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
+                    </div>
                 </div>
                 {% endif %}
 
