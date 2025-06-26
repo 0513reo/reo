@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------
-# 【究極版】Jekyll対応！全自動カテゴリページ生成プログラム (修正版)
+# 【究極版 final】Jekyllコレクション対応！全自動カテゴリページ生成プログラム
 # ----------------------------------------------------------------
 import os
 import glob
@@ -39,44 +39,54 @@ CATEGORIES_TO_CREATE = {
     '旦那への愚痴': 'category-madam-grumble.html',
 }
 
-# ★★★ Jekyllの投稿フォルダと、カテゴリページの出力先を指定 ★★★
-POSTS_FOLDER = "_posts"
+# ★★★【修正点】検索対象のコレクションフォルダをすべて指定！ ★★★
+COLLECTION_FOLDERS = ["_our_story", "_logs", "_tweets"]
 OUTPUT_FOLDER = "category"
 
 # --- 2. ここから下のコードは変更不要です ---
 
-def find_relevant_posts(keyword, posts_folder):
-    """_postsフォルダ内の全マークダウンファイルを検索し、キーワードを含む投稿の情報を返す"""
-    print(f"--- 「{keyword}」で検索中 in {posts_folder} ---")
+def find_relevant_posts(keyword, collection_folders):
+    """指定されたすべてのコレクションフォルダから、キーワードを含む投稿を検索する"""
+    print(f"--- 「{keyword}」で検索中 in {collection_folders} ---")
     found_posts = []
     
-    md_files = glob.glob(os.path.join(posts_folder, "*.md"))
-    
-    for filepath in md_files:
-        try:
-            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
-                content = f.read()
-            
-            parts = re.split(r'---\s*', content, 2)
-            if len(parts) < 3: continue
-            
-            if keyword.lower() in content.lower():
-                title_match = re.search(r'title:\s*["\']?(.*?)["\']?\s*$', parts[1], re.MULTILINE)
-                title = title_match.group(1) if title_match else "タイトル不明"
+    for folder in collection_folders:
+        if not os.path.exists(folder):
+            print(f"  [警告] フォルダ '{folder}' が見つかりません。スキップします。")
+            continue
 
-                date_str = os.path.basename(filepath)[:10]
-                post_date = datetime.strptime(date_str, "%Y-%m-%d")
+        md_files = glob.glob(os.path.join(folder, "*.md"))
+        for filepath in md_files:
+            try:
+                with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                
+                parts = re.split(r'---\s*', content, 2)
+                if len(parts) < 3: continue
+                
+                if keyword.lower() in content.lower():
+                    title_match = re.search(r'title:\s*["\']?(.*?)["\']?\s*$', parts[1], re.MULTILINE)
+                    title = title_match.group(1) if title_match else "タイトル不明"
 
-                post_url = post_date.strftime("/%Y/%m/%d/") + os.path.basename(filepath)[11:].replace('.md', '.html')
+                    # ファイル名から日付を取得し、URLを生成
+                    date_str_match = re.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(filepath))
+                    if date_str_match:
+                        date_str = date_str_match.group(1)
+                        post_date = datetime.strptime(date_str, "%Y-%m-%d")
+                        # _config.yml の permalink 設定に基づいたURLを生成
+                        post_url = f"/{folder.replace('_','')}/{os.path.basename(filepath).replace('.md','')}/"
+                    else: # 日付がないファイルの場合
+                        post_date = datetime.now()
+                        post_url = f"/{folder.replace('_','')}/{os.path.basename(filepath).replace('.md','/')}"
 
-                found_posts.append({
-                    'title': title,
-                    'url': post_url,
-                    'date': post_date
-                })
-                print(f"  [発見！] -> {filepath}")
-        except Exception as e:
-            print(f"  [エラー] {filepath} の処理中: {e}")
+                    found_posts.append({
+                        'title': title,
+                        'url': post_url,
+                        'date': post_date
+                    })
+                    print(f"  [発見！] -> {filepath}")
+            except Exception as e:
+                print(f"  [エラー] {filepath} の処理中: {e}")
     
     return sorted(found_posts, key=lambda x: x['date'], reverse=True)
 
@@ -94,11 +104,9 @@ title: 「{keyword}」に関する記事一覧
     if not posts_data:
         cards_html = "<p>このカテゴリに関連する記事はまだありません。</p>"
     else:
-        # ▼▼▼【重要】抜け落ちていたforループを、ここに追加しました！ ▼▼▼
         for post in posts_data:
-            # リンクの閉じカッコも修正済み
             cards_html += f"""
-            <a href="{{{{ site.baseurl }}}}{{post['url']}}" class="card">
+            <a href="{{{{ site.baseurl }}}}{{post.url}}" class="card">
                 <h3>{post['title']}</h3>
                 <p>公開日: {post['date'].strftime('%Y年%m月%d日')}</p>
             </a>
@@ -132,13 +140,11 @@ if __name__ == "__main__":
         os.makedirs(OUTPUT_FOLDER)
         print(f"フォルダ '{OUTPUT_FOLDER}' を作成しました。")
 
-    all_html_files = glob.glob(os.path.join(POSTS_FOLDER, "*.md"))
-    
     for keyword, filename in CATEGORIES_TO_CREATE.items():
         output_path = os.path.join(OUTPUT_FOLDER, filename)
         print(f"\n{'='*50}")
-        # find_relevant_postsに渡す引数を修正
-        found_posts = find_relevant_posts(keyword, POSTS_FOLDER)
+        # ★★★【修正点】すべてのコレクションフォルダを検索対象に！ ★★★
+        found_posts = find_relevant_posts(keyword, COLLECTION_FOLDERS)
         create_category_page_for_jekyll(keyword, found_posts, output_path)
         print(f"{'='*50}")
         
