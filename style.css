@@ -103,6 +103,7 @@ h1, h2, h3, h4 {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+
 /* --- トップページ：共通セクション --- */
 .section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 .section-title { text-align: center; font-size: 2em; color: #1e3a5f; margin-bottom: 30px; }
@@ -153,7 +154,13 @@ h1, h2, h3, h4 {
 }
 .archive-page .section-title { margin-top: 0; }
 .archive-page .section-title h1 { border-bottom: none; }
-.archive-description { font-size: 1.1em; color: #555; text-align: center; margin-top: -20px; margin-bottom: 30px; }
+.archive-description {
+    font-size: 1.1em;
+    color: #555;
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
 
 /* --- 記事の中の見出し --- */
 .blog-post h2 {
@@ -190,7 +197,7 @@ pre { background-color: #2d2d2d; color: #f8f8f2; padding: 20px; border-radius: 8
 /* スマホで見た時の設定 */
 @media (max-width: 768px) { 
     .updates-grid-container { 
-        display: flex; /* スマホでは縦並びに */
+        display: flex;
         flex-direction: column; 
     } 
     .hero-latest-post { 
