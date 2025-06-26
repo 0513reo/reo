@@ -17,6 +17,7 @@ title: トップページ
             <div class="updates-grid-container">
 
                 <!-- OUR STORYの最新記事を自動表示 -->
+                <!-- ★★★ 日付順に並び替えて、一番新しいものを表示！ ★★★ -->
                 {% assign latest_our_story = site.our_story | sort: "date" | reverse | first %}
                 {% if latest_our_story %}
                 <div class="update-card">
@@ -27,7 +28,6 @@ title: トップページ
                             <p>{{ latest_our_story.content | strip_html | truncate: 80 }}</p>
                         </a>
                     </div>
-                    <!-- ★★★ ここに「過去記事一覧へ」のリンクを追加！ ★★★ -->
                     <div class="archive-link">
                         <a href="{{ '/our-story-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
                     </div>
@@ -35,6 +35,7 @@ title: トップページ
                 {% endif %}
 
                 <!-- OUR LOGSの最新記事を自動表示 -->
+                <!-- ★★★ 日付順に並び替えて、一番新しいものを表示！ ★★★ -->
                 {% assign latest_log = site.logs | sort: "date" | reverse | first %}
                 {% if latest_log %}
                 <div class="update-card">
@@ -45,7 +46,6 @@ title: トップページ
                             <p>{{ latest_log.content | strip_html | truncate: 80 }}</p>
                         </a>
                     </div>
-                    <!-- ★★★ ここに「過去記事一覧へ」のリンクを追加！ ★★★ -->
                     <div class="archive-link">
                         <a href="{{ '/logs-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
                     </div>
@@ -53,6 +53,7 @@ title: トップページ
                 {% endif %}
 
                 <!-- TWEETの最新記事を自動表示 -->
+                <!-- ★★★ 日付順に並び替えて、一番新しいものを表示！ ★★★ -->
                 {% assign latest_tweet = site.tweets | sort: "date" | reverse | first %}
                 {% if latest_tweet %}
                 <div class="update-card">
@@ -63,7 +64,6 @@ title: トップページ
                             <p>{{ latest_tweet.content | strip_html | truncate: 80 }}</p>
                         </a>
                     </div>
-                    <!-- ★★★ ここに「過去記事一覧へ」のリンクを追加！ ★★★ -->
                     <div class="archive-link">
                         <a href="{{ '/tweets-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
                     </div>
