@@ -1,16 +1,16 @@
 ---
 layout: default
-title: 日々のつぶやき 全ログ
+title: OUR STORY 全記録
 class: archive-page
 ---
 <div class="container">
     <header class="section-title">
-        <h1>日々のつぶやき</h1>
-        <p class="archive-description">サイト制作の合間の、ちょっとした気づきや、ただの二日酔いの記録など。</p>
+        <h1>OUR STORY - 全記録</h1>
+        <p class="archive-description">PC素人がAIと二人三脚で、このサイトが完成するまでの、悪戦苦闘と、ほんの少しの感動の全記録です。</p>
     </header>
     <ul class="archive-list">
-        {% for post in site.tweets reversed %}
-             <li>
+        {% for post in site.our_story reversed %}
+            <li>
                 <a href="{{ post.url | relative_url }}">
                     <span class="post-title">{{ post.title }}</span>
                     <span class="post-date">{{ post.date | date: "%Y年%m月%d日" }}</span>
