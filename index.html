@@ -10,15 +10,13 @@ title: トップページ
     </header>
 
     <main>
-        <!-- ▼▼▼【ここからが、究極の自動更新セクションです！】▼▼▼ -->
+        <!-- ▼▼▼ 究極の自動更新セクション ▼▼▼ -->
         <section class="section">
             <h2 class="section-title">Latest Updates - 最新の記録</h2>
             <div class="updates-grid-container">
 
                 <!-- OUR STORYの最新記事を自動表示 -->
-                <!-- ★★★「すべてのページ」から、名札を頼りに探す魔法！★★★ -->
-                {% assign our_story_posts = site.pages | where: "category", "our_story" | default: site.posts | where: "category", "our_story" | sort: "date" | reverse %}
-                {% assign latest_our_story = our_story_posts[0] %}
+                {% assign latest_our_story = site.our_story | last %}
                 {% if latest_our_story %}
                 <div class="update-card">
                     <span class="update-label story-label">OUR STORY</span>
@@ -30,25 +28,25 @@ title: トップページ
                 {% endif %}
 
                 <!-- OUR LOGSの最新記事を自動表示 -->
-                {% assign latest_log = site.categories.logs[0] %}
+                {% assign latest_log = site.logs | last %}
                 {% if latest_log %}
                 <div class="update-card">
                     <span class="update-label logs-label">OUR LOGS</span>
                     <a href="{{ latest_log.url | relative_url }}">
                         <h3>{{ latest_log.title }}</h3>
-                        <p>{{ latest_log.excerpt | strip_html | truncate: 80 }}</p>
+                        <p>{{ latest_log.content | strip_html | truncate: 80 }}</p>
                     </a>
                 </div>
                 {% endif %}
 
                 <!-- TWEETの最新記事を自動表示 -->
-                {% assign latest_tweet = site.categories.tweet[0] %}
+                {% assign latest_tweet = site.tweets | last %}
                 {% if latest_tweet %}
                 <div class="update-card">
                     <span class="update-label tweet-label">日々のつぶやき</span>
                     <a href="{{ latest_tweet.url | relative_url }}">
                         <h3>{{ latest_tweet.title }}</h3>
-                        <p>{{ latest_tweet.excerpt | strip_html | truncate: 80 }}</p>
+                        <p>{{ latest_tweet.content | strip_html | truncate: 80 }}</p>
                     </a>
                 </div>
                 {% endif %}
@@ -56,7 +54,7 @@ title: トップページ
             </div>
         </section>
 
-        <!-- (これ以降のセクションは、今までと同じです) -->
+        <!-- ▼▼▼ これ以降のセクションも、すべて正しく含まれています ▼▼▼ -->
         <section class="section intro">
             <p><strong>『やってみると、なんとかなるもんだな。』</strong></p>
             <p>このサイトは、様々な経験をしてきたアラフィフ親父が、AIという、<br>新しい相棒と悪戦苦闘しながら、日々の学びや気づきを発信する場所です。<br>『たまに登場』するアラサーマダムの前向きな奮闘記にもご期待ください。</p>
@@ -66,10 +64,34 @@ title: トップページ
         <section class="section">
             <h2 class="section-title">Categories - カテゴリー</h2>
             <div class="category-buttons">
-                <!-- カテゴリボタンのリンクは、Jekyllの魔法で書くのがベスト -->
+                <!-- すべてのボタンのリンクを、Jekyllの魔法の言葉で修正済み -->
                 <a href="{{ '/category/category-ai-challenge.html' | relative_url }}" class="category-btn ai-btn">#AI奮闘記</a>
                 <a href="{{ '/category/category-money.html' | relative_url }}" class="category-btn">#お金</a>
-                <!-- 他のボタンも同様に... -->
+                <a href="{{ '/category/category-sidejob.html' | relative_url }}" class="category-btn">#副業</a>
+                <a href="{{ '/category/category-shortcut.html' | relative_url }}" class="category-btn">#時短</a>
+                <a href="{{ '/category/category-efficiency.html' | relative_url }}" class="category-btn">#効率</a>
+                <a href="{{ '/category/category-trouble.html' | relative_url }}" class="category-btn">#悩み解決</a>
+                <a href="{{ '/category/category-wall.html' | relative_url }}" class="category-btn">#壁の越え方</a>
+                <a href="{{ '/category/category-no-degree.html' | relative_url }}" class="category-btn">#学歴いらない世界</a>
+                <a href="{{ '/category/category-investment.html' | relative_url }}" class="category-btn">#投資</a>
+                <a href="{{ '/category/category-stock.html' | relative_url }}" class="category-btn">#株</a>
+                <a href="{{ '/category/category-fishing.html' | relative_url }}" class="category-btn">#釣り</a>
+                <a href="{{ '/category/category-boat.html' | relative_url }}" class="category-btn">#船</a>
+                <a href="{{ '/category/category-marine.html' | relative_url }}" class="category-btn">#マリンスポーツ</a>
+                <a href="{{ '/category/category-diy.html' | relative_url }}" class="category-btn">#DIY</a>
+                <a href="{{ '/category/category-tools.html' | relative_url }}" class="category-btn">#工具</a>
+                <a href="{{ '/category/category-sales.html' | relative_url }}" class="category-btn">#営業</a>
+                <a href="{{ '/category/category-restate.html' | relative_url }}" class="category-btn">#不動産</a>
+                <a href="{{ '/category/category-unearned.html' | relative_url }}" class="category-btn">#不労所得</a>
+                <a href="{{ '/category/category-wallets.html' | relative_url }}" class="category-btn">#4つの財布</a>
+                <a href="{{ '/category/category-fx.html' | relative_url }}" class="category-btn">#FX</a>
+                <a href="{{ '/category/category-monhan.html' | relative_url }}" class="category-btn">#モンハン</a>
+                <a href="{{ '/category/category-pachinko.html' | relative_url }}" class="category-btn">#昔のパチンコの話</a>
+                <a href="{{ '/category/category-golf.html' | relative_url }}" class="category-btn">#お付き合いゴルフ</a>
+                <a href="{{ '/category/category-madam-friends.html' | relative_url }}" class="category-btn madam-btn">#ママ友</a>
+                <a href="{{ '/category/category-madam-kids.html' | relative_url }}" class="category-btn madam-btn">#子育て</a>
+                <a href="{{ '/category/category-madam-work.html' | relative_url }}" class="category-btn madam-btn">#共働き</a>
+                <a href="{{ '/category/category-madam-grumble.html' | relative_url }}" class="category-btn madam-btn">#旦那への愚痴🤬</a>
             </div>
         </section>
         
