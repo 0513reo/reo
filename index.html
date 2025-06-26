@@ -1,5 +1,6 @@
 ---
 layout: default
+class: top-page
 title: トップページ
 ---
 <div class="container">
@@ -19,11 +20,17 @@ title: トップページ
                 {% assign latest_our_story = site.our_story | sort: "date" | reverse | first %}
                 {% if latest_our_story %}
                 <div class="update-card">
-                    <span class="update-label story-label">OUR STORY</span>
-                    <a href="{{ latest_our_story.url | relative_url }}">
- <h3>{{ latest_our_story.title }}</h3>
-                        <!-- 本文の最初の部分を自動で表示します -->
-                        <p>{{ latest_our_story.content | strip_html | truncate: 80 }}</p>                    </a>
+                    <div class="update-card-content">
+                        <span class="update-label story-label">OUR STORY</span>
+                        <a href="{{ latest_our_story.url | relative_url }}">
+                            <h3>{{ latest_our_story.title }}</h3>
+                            <p>{{ latest_our_story.content | strip_html | truncate: 80 }}</p>
+                        </a>
+                    </div>
+                    <!-- ★★★ ここに「過去記事一覧へ」のリンクを追加！ ★★★ -->
+                    <div class="archive-link">
+                        <a href="{{ '/our-story-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
+                    </div>
                 </div>
                 {% endif %}
 
@@ -31,12 +38,17 @@ title: トップページ
                 {% assign latest_log = site.logs | sort: "date" | reverse | first %}
                 {% if latest_log %}
                 <div class="update-card">
-                    <span class="update-label logs-label">OUR LOGS</span>
-                    <a href="{{ latest_log.url | relative_url }}">
-                        <h3>{{ latest_log.title }}</h3>
-                        <!-- ★★★【修正点】こちらにも、本文の抜粋表示を追加！ ★★★ -->
-                        <p>{{ latest_log.content | strip_html | truncate: 80 }}</p>
-                    </a>
+                     <div class="update-card-content">
+                        <span class="update-label logs-label">OUR LOGS</span>
+                        <a href="{{ latest_log.url | relative_url }}">
+                            <h3>{{ latest_log.title }}</h3>
+                            <p>{{ latest_log.content | strip_html | truncate: 80 }}</p>
+                        </a>
+                    </div>
+                    <!-- ★★★ ここに「過去記事一覧へ」のリンクを追加！ ★★★ -->
+                    <div class="archive-link">
+                        <a href="{{ '/logs-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
+                    </div>
                 </div>
                 {% endif %}
 
@@ -44,12 +56,17 @@ title: トップページ
                 {% assign latest_tweet = site.tweets | sort: "date" | reverse | first %}
                 {% if latest_tweet %}
                 <div class="update-card">
-                    <span class="update-label tweet-label">日々のつぶやき</span>
-                    <a href="{{ latest_tweet.url | relative_url }}">
-                        <h3>{{ latest_tweet.title }}</h3>
-                        <!-- ★★★【修正点】こちらにも、本文の抜粋表示を追加！ ★★★ -->
-                        <p>{{ latest_tweet.content | strip_html | truncate: 80 }}</p>
-                    </a>
+                    <div class="update-card-content">
+                        <span class="update-label tweet-label">日々のつぶやき</span>
+                        <a href="{{ latest_tweet.url | relative_url }}">
+                            <h3>{{ latest_tweet.title }}</h3>
+                            <p>{{ latest_tweet.content | strip_html | truncate: 80 }}</p>
+                        </a>
+                    </div>
+                    <!-- ★★★ ここに「過去記事一覧へ」のリンクを追加！ ★★★ -->
+                    <div class="archive-link">
+                        <a href="{{ '/tweets-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
+                    </div>
                 </div>
                 {% endif %}
 
