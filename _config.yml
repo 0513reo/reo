@@ -1,33 +1,14 @@
 title: アラフィフ親父とアラサーミセスの挑戦
 description: AI・副業・悩み・ギャップ・そして日々の奮闘。誰かの何かの参考になれば。
-# baseurl: "/Python自動化まとめ" # ← GitHub PagesのURLに合わせて設定
+baseurl: "/reo"
 
-# これが、新しいコレクションの定義です！
 collections:
   our_story:
     output: true
+    permalink: /story/:name/
   logs:
     output: true
+    permalink: /logs/:name/
   tweets:
     output: true
-
-# デフォルトのレイアウト設定
-defaults:
-  -
-    scope:
-      path: ""
-      type: "our_story"
-    values:
-      layout: "default"
-  -
-    scope:
-      path: ""
-      type: "logs"
-    values:
-      layout: "default"
-  -
-    scope:
-      path: ""
-      type: "tweets"
-    values:
-      layout: "default"
+    permalink: /tweets/:name/
