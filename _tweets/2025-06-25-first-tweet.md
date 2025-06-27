@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "二日酔いと、失われた時間"
-category: tweet
+collection: tweets
 ---
 
 <div class="container blog-post" style="max-width: 850px;">
