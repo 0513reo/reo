@@ -8,10 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@700&display=swap" rel="stylesheet">
-    <!-- ★★★ Jekyllの世界の正しいCSSの呼び出し方 ★★★ -->
-    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+    <!-- ★★★【修正点】style.cssを、正しい魔法の言葉で呼び出す！ ★★★ -->
+    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}"> 
 </head>
-<body class="{{ page.class }}">
+<body class="{{ page.collection }}">
+    
+    <!-- ★★★ サイト共通のヘッダー部品を、ここに自動で挿入 ★★★ -->
+    {% include header.html %}
+
+    <!-- ★★★ 各ページの中身（content）を、ここに自動で挿入 ★★★ -->
     {{ content }}
+
 </body>
 </html>
