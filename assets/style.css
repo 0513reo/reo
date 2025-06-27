@@ -9,7 +9,8 @@ body {
     line-height: 1.8;
 }
 .container { 
-    max-width: 1000px; 
+    /* ▼▼▼【修正点】横幅を広げました ▼▼▼ */
+    max-width: 1100px; 
     margin: 0 auto; 
     padding: 20px; 
 }
@@ -30,7 +31,8 @@ h1, h2, h3, h4 {
     background: url('https://i.gyazo.com/b5b57f0f1cd0b200b217a1fd1e670c5e.jpg') center center / cover no-repeat; 
     color: white; 
     text-align: center; 
-    padding: 90px 20px 60px 20px; 
+    /* ▼▼▼【修正点】高さを抑えて、下のコンテンツを見やすくしました ▼▼▼ */
+    padding: 70px 20px 50px 20px; 
     border-radius: 12px; 
 }
 .hero h1 { 
@@ -53,7 +55,7 @@ h1, h2, h3, h4 {
 /* --- トップページ：最新アップデートセクション --- */
 .updates-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 幅も少し調整 */
     gap: 30px;
 }
 .update-card {
@@ -73,46 +75,28 @@ h1, h2, h3, h4 {
 .update-card h3 { margin-top: 10px; margin-bottom: 15px; font-size: 1.4em; color: #333; }
 .update-card p { font-size: 1em; line-height: 1.7; color: #555; margin-bottom: 0; flex-grow: 1; }
 .update-label { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 0.8em; font-weight: 700; color: white; align-self: flex-start; }
-.story-label { background-color: #e74c3c; } /* 赤系 */
-.logs-label { background-color: #3498db; }  /* 青系 */
-.tweet-label { background-color: #2ecc71; } /* 緑系 */
-
-/* ★★★【これが最終版！】アーカイブへのリンクを、ボタン風にするスタイル ★★★ */
-.archive-link {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    text-align: right;
-}
-.archive-link a {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #f1f1f1;
-    color: #555 !important; /* 他のスタイルに負けないように!importantを追加 */
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 0.9em;
-    transition: all 0.2s ease-in-out;
-    border: 1px solid #ddd;
-    text-decoration: none !important; /* 下線を確実に消す */
-}
-.archive-link a:hover {
-    background-color: #e0e0e0;
-    color: #333 !important;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
+.story-label { background-color: #e74c3c; }
+.logs-label { background-color: #3498db; }
+.tweet-label { background-color: #2ecc71; }
+.archive-link { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; text-align: right; }
+.archive-link a { display: inline-block; padding: 8px 16px; background-color: #f1f1f1; color: #555 !important; border-radius: 5px; font-weight: bold; font-size: 0.9em; transition: all 0.2s ease-in-out; border: 1px solid #ddd; text-decoration: none !important; }
+.archive-link a:hover { background-color: #e0e0e0; color: #333 !important; transform: translateY(-1px); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
 /* --- トップページ：共通セクション --- */
 .section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-.section-title { text-align: center; font-size: 2em; color: #1e3a5f; margin-bottom: 30px; }
+.section-title { 
+    text-align: center; 
+    /* ▼▼▼【修正点】見出しの文字を少し小さくしました ▼▼▼ */
+    font-size: 1.8em; 
+    color: #1e3a5f; 
+    margin-bottom: 30px; 
+}
 .intro p { font-size: 1.1em; text-align: center; }
 .note { text-align: center; margin-top: 20px; font-style: italic; color: #666; }
 
 /* --- トップページ：カテゴリボタン --- */
 .category-buttons { text-align: center; margin-top: 20px; }
-.category-btn { display: inline-block; background-color: #eef5ff; color: #3498db; padding: 10px 18px; border-radius: 8px; margin: 8px; font-size: 1em; font-weight: 700; border: 1px solid #c8dcf0; transition: all 0.2s ease-in-out; }
+.category-btn { display: inline-block; background-color: #eef5ff; color: #3498db; padding: 10px 18px; border-radius: 8px; margin: 8px; font-size: 1em; font-weight: 700; border: 1px solid #c8dcf0; transition: all 0.2s ease-in-out; text-decoration: none; }
 .category-btn:hover { background-color: #3498db; color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(52,152,219,0.3); }
 .madam-btn { background-color: #fff0f5; color: #e91e63; border-color: #f7d4e1; }
 .madam-btn:hover { background-color: #e91e63; color: white; box-shadow: 0 4px 10px rgba(233,30,99,0.3); }
@@ -125,54 +109,20 @@ h1, h2, h3, h4 {
 .gallery img:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
 
 /* --- トップページ：メインボタン --- */
-.main-button { display: block; width: 80%; max-width: 400px; margin: 40px auto; padding: 20px; background-color: #e74c3c; color: white; text-align: center; font-size: 1.4em; font-weight: bold; border-radius: 10px; transition: background-color 0.2s, transform 0.2s; }
+.main-button { display: block; width: 80%; max-width: 400px; margin: 40px auto; padding: 20px; background-color: #e74c3c; color: white; text-align: center; font-size: 1.4em; font-weight: bold; border-radius: 10px; transition: background-color 0.2s, transform 0.2s; text-decoration: none; }
 .main-button:hover { background-color: #c0392b; transform: scale(1.03); }
 
 /* =============================================== */
 /* ★ ブログ記事・アーカイブページ共通のデザイン ★ */
 /* =============================================== */
-
-/* --- 記事・一覧のコンテナ --- */
 .blog-post .container,
-.archive-page .container {
-    max-width: 800px; 
-    margin: 20px auto; 
-    background-color: white; 
-    padding: 20px 40px 40px 40px;
-    border-radius: 12px; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-/* --- 記事・一覧のタイトル --- */
+.archive-page .container { max-width: 800px; margin: 20px auto; background-color: white; padding: 20px 40px 40px 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 .blog-post h1,
-.archive-page h1 {
-    color: #1e3a5f; 
-    border-bottom: 2px solid #4a90e2; 
-    padding-bottom: 10px; 
-    font-size: 2.2em;
-    margin-bottom: 40px;
-}
+.archive-page h1 { color: #1e3a5f; border-bottom: 2px solid #4a90e2; padding-bottom: 10px; font-size: 2.2em; margin-bottom: 40px; }
 .archive-page .section-title { margin-top: 0; }
 .archive-page .section-title h1 { border-bottom: none; }
-.archive-description {
-    font-size: 1.1em;
-    color: #555;
-    text-align: center;
-    margin-top: -20px;
-    margin-bottom: 30px;
-}
-
-
-/* --- 記事の中の見出し --- */
-.blog-post h2 {
-    color: #34495e;
-    border-left: 5px solid #4a90e2;
-    padding-left: 15px;
-    margin-top: 50px;
-    font-size: 1.6em;
-}
-
-/* --- 記事の中の共通要素 --- */
+.archive-description { font-size: 1.1em; color: #555; text-align: center; margin-top: -20px; margin-bottom: 30px; }
+.blog-post h2 { color: #34495e; border-left: 5px solid #4a90e2; padding-left: 15px; margin-top: 50px; font-size: 1.6em; }
 .quote { background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 15px 20px; margin: 30px auto; font-style: italic; border-radius: 5px; }
 hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0)); margin: 60px 0; }
 .attention-box { background-color: #fff9e6; border: 2px solid #ffc107; border-radius: 8px; padding: 20px; margin: 40px 0; }
@@ -180,14 +130,10 @@ hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0,
 .step-box { border: 1px solid #ddd; padding: 25px; border-radius: 8px; margin-bottom: 30px; }
 .step-number { display: inline-block; background-color: #3498db; color: white; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; font-weight: bold; font-size: 1.2em; margin-right: 10px; }
 pre { background-color: #2d2d2d; color: #f8f8f2; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; }
-
-/* --- 記事・一覧のナビゲーションボタン --- */
-.read-more-btn, .back-button { display: inline-block; padding: 10px 20px; background-color: #3498db; color: white; border-radius: 5px; font-weight: bold; transition: background-color 0.2s; }
+.read-more-btn, .back-button { display: inline-block; padding: 10px 20px; background-color: #3498db; color: white; border-radius: 5px; font-weight: bold; transition: background-color 0.2s; text-decoration: none; }
 .read-more-btn:hover, .back-button:hover { background-color: #2980b9; }
 .back-link { text-align: center; margin-top: 50px; }
 .navigation-links { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
-
-/* --- アーカイブ（一覧）ページ専用のデザイン --- */
 .archive-list { list-style: none; padding: 0; }
 .archive-list li { background-color: #fff; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; }
 .archive-list li:hover { transform: translateY(-3px); box-shadow: 0 5px 12px rgba(0,0,0,0.1); }
@@ -198,7 +144,7 @@ pre { background-color: #2d2d2d; color: #f8f8f2; padding: 20px; border-radius: 8
 /* スマホで見た時の設定 */
 @media (max-width: 768px) { 
     .updates-grid-container { 
-        display: flex;
+        display: flex; /* スマホではflexに切り替え */
         flex-direction: column; 
     } 
     .hero-latest-post { 
