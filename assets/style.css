@@ -9,7 +9,6 @@ body {
     line-height: 1.8;
 }
 .container { 
-    /* ▼▼▼【修正点】横幅を広げました ▼▼▼ */
     max-width: 1100px; 
     margin: 0 auto; 
     padding: 20px; 
@@ -31,7 +30,6 @@ h1, h2, h3, h4 {
     background: url('https://i.gyazo.com/b5b57f0f1cd0b200b217a1fd1e670c5e.jpg') center center / cover no-repeat; 
     color: white; 
     text-align: center; 
-    /* ▼▼▼【修正点】高さを抑えて、下のコンテンツを見やすくしました ▼▼▼ */
     padding: 70px 20px 50px 20px; 
     border-radius: 12px; 
 }
@@ -55,7 +53,7 @@ h1, h2, h3, h4 {
 /* --- トップページ：最新アップデートセクション --- */
 .updates-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 幅も少し調整 */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
 }
 .update-card {
@@ -78,15 +76,37 @@ h1, h2, h3, h4 {
 .story-label { background-color: #e74c3c; }
 .logs-label { background-color: #3498db; }
 .tweet-label { background-color: #2ecc71; }
-.archive-link { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; text-align: right; }
-.archive-link a { display: inline-block; padding: 8px 16px; background-color: #f1f1f1; color: #555 !important; border-radius: 5px; font-weight: bold; font-size: 0.9em; transition: all 0.2s ease-in-out; border: 1px solid #ddd; text-decoration: none !important; }
-.archive-link a:hover { background-color: #e0e0e0; color: #333 !important; transform: translateY(-1px); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+/* ★★★【これが最終版！】アーカイブへのリンクを、ボタン風にするスタイル ★★★ */
+.archive-link {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+.archive-link a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f1f1f1;
+    color: #555 !important;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid #ddd;
+    text-decoration: none !important;
+}
+.archive-link a:hover {
+    background-color: #e0e0e0;
+    color: #333 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
 /* --- トップページ：共通セクション --- */
 .section { background-color: white; padding: 40px; margin-top: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 .section-title { 
     text-align: center; 
-    /* ▼▼▼【修正点】見出しの文字を少し小さくしました ▼▼▼ */
     font-size: 1.8em; 
     color: #1e3a5f; 
     margin-bottom: 30px; 
@@ -120,7 +140,6 @@ h1, h2, h3, h4 {
 .blog-post h1,
 .archive-page h1 { color: #1e3a5f; border-bottom: 2px solid #4a90e2; padding-bottom: 10px; font-size: 2.2em; margin-bottom: 40px; }
 .archive-page .section-title { margin-top: 0; }
-.archive-page .section-title h1 { border-bottom: none; }
 .archive-description { font-size: 1.1em; color: #555; text-align: center; margin-top: -20px; margin-bottom: 30px; }
 .blog-post h2 { color: #34495e; border-left: 5px solid #4a90e2; padding-left: 15px; margin-top: 50px; font-size: 1.6em; }
 .quote { background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 15px 20px; margin: 30px auto; font-style: italic; border-radius: 5px; }
@@ -144,7 +163,7 @@ pre { background-color: #2d2d2d; color: #f8f8f2; padding: 20px; border-radius: 8
 /* スマホで見た時の設定 */
 @media (max-width: 768px) { 
     .updates-grid-container { 
-        display: flex; /* スマホではflexに切り替え */
+        display: flex;
         flex-direction: column; 
     } 
     .hero-latest-post { 

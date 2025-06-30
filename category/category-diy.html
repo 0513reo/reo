@@ -1,18 +1,19 @@
 ---
 layout: default
 title: 「DIY」に関する記事一覧
+class: archive-page
 ---
 
 <div class="container">
-    <header>
-        <h1 class="section-title" style="font-size: 2.2em; border-bottom: 3px solid #3498db; padding-bottom: 10px;">「DIY」に関する記事まとめ</h1>
+    <header class="section-title">
+        <h1>「DIY」に関する記事まとめ</h1>
     </header>
-    <div class="link-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
-        
-            <a href="{{ site.baseurl }}{post.url}" class="card">
-                <h3>Step 5: AIの不可解な言葉と、スーパー建築士『Jekyll』の登場</h3>
-                <p>公開日: 2025年06月25日</p>
-            </a>
-            
-    </div>
+    <ul class='archive-list'>
+            <li>
+                <a href="{{ site.baseurl }}{post.url}">
+                    <span class="post-title">Step 5: AIの不可解な言葉と、スーパー建築士『Jekyll』の登場</span>
+                    <span class="post-date">2025年06月25日</span>
+                </a>
+            </li>
+            </ul>
 </div>

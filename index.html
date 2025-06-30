@@ -7,35 +7,32 @@ title: トップページ
     
     <header class="hero">
         <h1>40代？アラフィフ親父と<br>30代アラサーミセスの挑戦</h1>
-        <p>AI・副業・悩み・ギャップ・営業・4つの財布・不労所得<br>釣り・不動産・そして日々の奮闘。誰かの何かの参考になれば</p>
+        <p>AI・副業・悩み・ギャップ・営業・4つの財布・不労所得・モンハン<br>時短・釣り・不動産・そして日々の奮闘。誰かの何かの参考になれば</p>
     </header>
 
     <main>
-        <!-- ▼▼▼【究極の自動更新セクション！これが最終版です！】▼▼▼ -->
         <section class="section">
             <h2 class="section-title">Latest Updates - 最新の記録</h2>
             <div class="updates-grid-container">
 
-                <!-- OUR STORY -->
+                <!-- OUR STORYの最新記事を自動表示 -->
                 {% assign latest_our_story = site.our_story | sort: "date" | reverse | first %}
                 {% if latest_our_story %}
                 <div class="update-card">
                     <div class="update-card-content">
                         <span class="update-label story-label">OUR STORY</span>
-                        <!-- 最新記事へのリンク -->
                         <a href="{{ latest_our_story.url | relative_url }}">
                             <h3>{{ latest_our_story.title }}</h3>
                             <p>{{ latest_our_story.content | strip_html | truncate: 80 }}</p>
                         </a>
                     </div>
-                    <!-- アーカイブ（書庫）へのリンク -->
                     <div class="archive-link">
                         <a href="{{ '/our-story-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
                     </div>
                 </div>
                 {% endif %}
 
-                <!-- OUR LOGS -->
+                <!-- OUR LOGSの最新記事を自動表示 -->
                 {% assign latest_log = site.logs | sort: "date" | reverse | first %}
                 {% if latest_log %}
                 <div class="update-card">
@@ -52,7 +49,7 @@ title: トップページ
                 </div>
                 {% endif %}
 
-                <!-- TWEETS -->
+                <!-- TWEETSの最新記事を自動表示 -->
                 {% assign latest_tweet = site.tweets | sort: "date" | reverse | first %}
                 {% if latest_tweet %}
                 <div class="update-card">
@@ -72,7 +69,6 @@ title: トップページ
             </div>
         </section>
 
-        <!-- (これ以降のセクションは、今までと同じです) -->
         <section class="section intro">
             <p><strong>『やってみると、なんとかなるもんだな。』</strong></p>
             <p>このサイトは、様々な経験をしてきたアラフィフ親父が、AIという、<br>新しい相棒と悪戦苦闘しながら、日々の学びや気づきを発信する場所です。<br>『たまに登場』するアラサーマダムの前向きな奮闘記にもご期待ください。</p>
@@ -82,6 +78,7 @@ title: トップページ
         <section class="section">
             <h2 class="section-title">Categories - カテゴリー</h2>
             <div class="category-buttons">
+                <!-- ▼▼▼ あなたが減らした、最新のカテゴリーボタンです ▼▼▼ -->
                 <a href="{{ '/category/category-ai-challenge.html' | relative_url }}" class="category-btn ai-btn">#AI奮闘記</a>
                 <a href="{{ '/category/category-money.html' | relative_url }}" class="category-btn">#お金</a>
                 <a href="{{ '/category/category-sidejob.html' | relative_url }}" class="category-btn">#副業</a>

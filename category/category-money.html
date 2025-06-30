@@ -1,23 +1,26 @@
 ---
 layout: default
 title: 「お金」に関する記事一覧
+class: archive-page
 ---
 
 <div class="container">
-    <header>
-        <h1 class="section-title" style="font-size: 2.2em; border-bottom: 3px solid #3498db; padding-bottom: 10px;">「お金」に関する記事まとめ</h1>
+    <header class="section-title">
+        <h1>「お金」に関する記事まとめ</h1>
     </header>
-    <div class="link-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
-        
-            <a href="{{ site.baseurl }}{post.url}" class="card">
-                <h3>お金の使い方 - 使う天才が貯める方法</h3>
-                <p>公開日: 2025年06月30日</p>
-            </a>
+    <ul class='archive-list'>
+            <li>
+                <a href="{{ site.baseurl }}{post.url}">
+                    <span class="post-title">お金の使い方 - 使う天才が貯める方法</span>
+                    <span class="post-date">2025年06月30日</span>
+                </a>
+            </li>
             
-            <a href="{{ site.baseurl }}{post.url}" class="card">
-                <h3>4つの財布</h3>
-                <p>公開日: 2025年06月29日</p>
-            </a>
-            
-    </div>
+            <li>
+                <a href="{{ site.baseurl }}{post.url}">
+                    <span class="post-title">4つの財布</span>
+                    <span class="post-date">2025年06月29日</span>
+                </a>
+            </li>
+            </ul>
 </div>
