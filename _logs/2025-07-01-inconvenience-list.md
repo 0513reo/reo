@@ -3,12 +3,14 @@ layout: default
 title: "【アラフィフおやじのボヤキ】AIで解決したい、日常の地味な『不便』トップ10"
 collection: "logs"
 ---
+
 <div class="container blog-post">
     <header style="text-align:center; margin-bottom: 20px;">
         <h1 style="font-size: 2.2em; border-bottom: 2px solid #eee; padding-bottom:10px; margin-bottom: 5px;">{{ page.title }}</h1>
     </header>
 
     <div class="content">
+        <div class="step-box">
         <!-- ▼▼▼ ここに本文を書く（以下の文章はタタキ台です。あなたの言葉で書き直してください） ▼▼▼ -->
 
         <p>「やれば終わる」とは分かっている。だが、その「やれば終わる」作業が、人生にどれだけあることか。<br>

@@ -3,12 +3,14 @@ layout: default
 title: "【時間泥棒】AI初心者の俺がハマった、５つの無駄な作業と賢い避け方"
 collection: "logs"
 ---
+
 <div class="container blog-post" style="max-width: 850px;">
     <header style="text-align:center; margin-bottom: 20px;">
         <h1 style="font-size: 2.2em; border-bottom: 2px solid #eee; padding-bottom:10px; margin-bottom: 5px;">{{ page.title }}</h1>
     </header>
 
     <div class="content">
+        <div class="step-box">
         <!-- ▼▼▼ ここに、あなたの素晴らしい物語の本文を書いていきます ▼▼▼ -->
 
         <p>AIはすごい相棒だ。だが、正直に言おう。こいつは時々、とんでもない「時間泥棒」にもなる。<br>
