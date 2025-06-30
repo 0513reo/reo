@@ -47,7 +47,7 @@ collection: "logs"
         <!-- ▲▲▲ 本文ここまで ▲▲▲ -->
     </div>
     
-    <!-- 前後の記事へのナビゲーションリンク -->
+    <!-- ★★★ 究極の自動ナビゲーション (バグ修正版) ★★★ -->
     <div class="navigation-links" style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
         {% assign collection_name = page.collection %}
         {% if collection_name %}
@@ -58,12 +58,22 @@ collection: "logs"
                     {% if prev_post_index >= 0 %}
                         {% assign prev_post = posts_in_collection[prev_post_index] %}
                     {% endif %}
+
+                    {% assign next_post_index = forloop.index0 | plus: 1 %}
+                    {% if next_post_index < posts_in_collection.size %}
+                        {% assign next_post = posts_in_collection[next_post_index] %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
             
             <div class="prev-link" style="width: 45%; text-align: left;">
                 {% if prev_post %}
                     <a href="{{ prev_post.url | relative_url }}" class="read-more-btn">« {{ prev_post.title }}</a>
+                {% endif %}
+            </div>
+            <div class="next-link" style="width: 45%; text-align: right;">
+                {% if next_post %}
+                    <a href="{{ next_post.url | relative_url }}" class="read-more-btn">{{ next_post.title }} »</a>
                 {% endif %}
             </div>
         {% endif %}
