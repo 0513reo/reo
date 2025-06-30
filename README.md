@@ -24,7 +24,7 @@
 *   **Pythonによる自動生成:** `create_category_page.py`を実行することで、サイト内の全コンテンツを横断検索し、カテゴリ別のまとめページを全自動で生成します。
 *   **外部CSSによるデザイン管理:** サイト全体のデザインは`assets/style.css`で一元管理しています。
 
-*使用ツール: HTML, CSS, Python, Jekyll, BeautifulSoup4, GitHub, GitHub Pages, AI Studio, ChatGPT 他*
+*使用ツール: HTML, CSS, Python, Jekyll, BeautifulSoup4, GitHub, AI Studio, ChatGPT 無料ソフトウェアのみです。*
 
 ---
 
