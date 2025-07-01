@@ -116,31 +116,44 @@ title: "あなたの仕事における「隠れた武器」発見診断"
         </div>
     </div>
 
-    <!-- ▼▼▼ 結果表示エリア (最初は隠しておく) ▼▼▼ -->
-    <div id="shindan-result">
-        <h2>【AIからの分析レポート】</h2>
-        <!-- 分析材料(質問1)の表示エリア -->
-        <div id="result1" class="analysis-item"></div>
-        <!-- 分析材料(質問2)の表示エリア -->
-        <div id="result2" class="analysis-item"></div>
-        <!-- 分析材料(質問3)の表示エリア -->
-        <div id="result3" class="analysis-item"></div>
-        <!-- 分析材料(質問4)の表示エリア -->
-        <div id="result4" class="analysis-item"></div>
-        <!-- 分析材料(質問5)の表示エリア -->
-        <div id="result5" class="analysis-item"></div>
-        
-        <div class="final-message">
-            <p style="font-weight: bold;">あなたという人間の、複雑で面白い一面が見えた気がします。</p>
-            <p>AIは、このようにあなたが選んだ言葉から、思考の「傾向」を客観的に分析するのが得意です。<br>でも、これはまだ入り口に過ぎません。</p>
-            <p>AIの本当の得意分野は、ここからの<strong>『対話による深掘り』</strong>です。<br>今日の分析結果を元に、「なぜ自分はそう考えるんだろう？」と問いかけたり、視点を変えた質問を投げかけたりすることで、AIはあなたの思考を整理し、磨き上げるための、最高のパートナーになります。</p>
-            <p>もし、あなたが「もっと自分を知りたい」「AIという道具を使いこなしてみたい」と思われたなら。<br>ぜひ一度、ChatGPTやGeminiに、今日のこの結果を伝えて、話しかけてみてください。</p>
-            <p style="font-weight: bold; font-size: 1.2em;">世界が変わるかもしれませんよ。</p>
-            
-            <a href="{{ '/logs/2025-07-01-inconvenience-list.html' | relative_url }}" class="main-button" style="display:inline-block; width:auto; margin-top: 20px;">AIとの対話、最初の一歩はこれだ！</a>
-        </div>
+<div id="shindan-result">
+    <h2>【AIからの分析レポート】</h2>
+    <!-- 分析材料(質問1)の表示エリア -->
+    <div id="result1" class="analysis-item"></div>
+    <!-- 分析材料(質問2)の表示エリア -->
+    <div id="result2" class="analysis-item"></div>
+    <!-- 分析材料(質問3)の表示エリア -->
+    <div id="result3" class="analysis-item"></div>
+    <!-- 分析材料(質問4)の表示エリア -->
+    <div id="result4" class="analysis-item"></div>
+    <!-- 分析材料(質問5)の表示エリア -->
+    <div id="result5" class="analysis-item"></div>
+
+    <!-- ★★★【改善点】ここから下を追加・変更 ★★★ -->
+
+    <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)); margin: 40px 0;">
+
+    <!-- ▼▼▼ ここに「まとめ」を表示する新しい箱を追加 ▼▼▼ -->
+    <div id="result-summary" style="text-align: center; padding: 20px;">
+        <h3>あなたの傾向まとめ</h3>
+        <p>これらの分析をまとめると、あなたは…</p>
+        <ul id="summary-list" style="list-style: none; padding: 0; font-weight: bold; font-size: 1.2em; line-height: 1.8;">
+            <!-- ここにJavaScriptでまとめが挿入されます -->
+        </ul>
     </div>
-</div>
+
+    <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)); margin: 40px 0;">
+    
+    <div class="final-message">
+        <p style="font-weight: bold;">あなたという人間の、複雑で面白い一面が見えた気がします。</p>
+        <p>AIは、このようにあなたが選んだ言葉から、思考の「傾向」を客観的に分析するのが得意です。<br>でも、これはまだ入り口に過ぎません。</p>
+        <p>AIの本当の得意分野は、ここからの<strong>『対話による深掘り』</strong>です。<br>今日の分析結果を元に、「なぜ自分はそう考えるんだろう？」と問いかけたり、視点を変えた質問を投げかけたりすることで、AIはあなたの思考を整理し、磨き上げるための、最高のパートナーになります。</p>
+        <p>もし、あなたが「もっと自分を知りたい」「AIという道具を使いこなしてみたい」と思われたなら。<br>ぜひ一度、ChatGPTやGeminiに、今日のこの結果を伝えて、話しかけてみてください。</p>
+        <p style="font-weight: bold; font-size: 1.2em;">世界が変わるかもしれませんよ。</p>
+        
+        <a href="{{ '/logs/2025-07-01-inconvenience-list.html' | relative_url }}" class="main-button" style="display:inline-block; width:auto; margin-top: 20px;">AIとの対話、最初の一歩はこれだ！</a>
+    </div>
+
 
 <!-- ▼▼▼ 魔法のJavaScript (ここから下が診断を動かす心臓部です) ▼▼▼ -->
 <script>
@@ -189,19 +202,46 @@ title: "あなたの仕事における「隠れた武器」発見診断"
         }
     }
 
-    function showResult() {
-        // 質問全体を隠す
-        document.getElementById('shindan-questions').style.display = 'none';
+function showResult() {
+    // 質問全体を隠す
+    document.getElementById('shindan-questions').style.display = 'none';
 
-        // 記録した答えを元に、結果の文章を表示する
-        for (let i = 0; i < userAnswers.length; i++) {
-            const answerData = userAnswers[i]; // 例: { q: 'q1', choice: 'A' }
-            const resultElementId = 'result' + (i + 1); // 'result1', 'result2'...
-            const resultText = analysisData[answerData.q][answerData.choice];
-            document.getElementById(resultElementId).innerHTML = resultText;
-        }
+    // ★★★【改善点】ここから下を追加 ★★★
+    // まず、サマリー用の「タイプ名」を抽出する
+    const typeNames = [];
+    const typeKeywords = {
+        q1: { A: "学者/研究者", B: "コミュニケーター/ジャーナリスト" },
+        q2: { A: "アジャイルな開発者", B: "プロの職人" },
+        q3: { A: "戦略家/指揮官", B: "ファシリテーター/プロデューサー" },
+        q4: { A: "堅実な実務家", B: "改革者/発明家" },
+        q5: { A: "品質の番人", B: "投資家/冒険家" }
+    };
+    // ★★★ ここまで ★★★
 
-        // 結果エリア全体を表示する
-        document.getElementById('shindan-result').style.display = 'block';
+
+    // 記録した答えを元に、結果の文章を表示する
+    for (let i = 0; i < userAnswers.length; i++) {
+        const answerData = userAnswers[i]; // 例: { q: 'q1', choice: 'A' }
+        const resultElementId = 'result' + (i + 1);
+        const resultText = analysisData[answerData.q][answerData.choice];
+        document.getElementById(resultElementId).innerHTML = resultText;
+
+        // ★★★【改善点】ここを追加 ★★★
+        // 同時に、サマリー用のタイプ名をリストに追加する
+        typeNames.push(typeKeywords[answerData.q][answerData.choice]);
+        // ★★★ ここまで ★★★
     }
-</script>
+
+    // ★★★【改善点】ここから下を追加 ★★★
+    // 抽出したタイプ名を、サマリーエリアに表示する
+    const summaryList = document.getElementById('summary-list');
+    typeNames.forEach(name => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `「${name}」のような側面`;
+        summaryList.appendChild(listItem);
+    });
+    // ★★★ ここまで ★★★
+
+    // 結果エリア全体を表示する
+    document.getElementById('shindan-result').style.display = 'block';
+}
