@@ -21,13 +21,13 @@ title: トップページ
                 <div class="update-card">
                     <div class="update-card-content">
                         <span class="update-label story-label">OUR STORY</span>
-                        <a href="{{ latest_our_story.url | relative_url }}">
+                        <a href="{{ site.baseurl }}{{ latest_our_story.url }}">
                             <h3>{{ latest_our_story.title }}</h3>
                             <p>{{ latest_our_story.content | strip_html | truncate: 80 }}</p>
                         </a>
                     </div>
                     <div class="archive-link">
-                        <a href="{{ '/our-story-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
+                        <a href="{{ site.baseurl }}/our-story-archive.html">このシリーズの全記録へ »</a>
                     </div>
                 </div>
                 {% endif %}
@@ -38,13 +38,13 @@ title: トップページ
                 <div class="update-card">
                      <div class="update-card-content">
                         <span class="update-label logs-label">OUR LOGS</span>
-                        <a href="{{ latest_log.url | relative_url }}">
+                        <a href="{{ site.baseurl }}{{ latest_log.url }}">
                             <h3>{{ latest_log.title }}</h3>
                             <p>{{ latest_log.content | strip_html | truncate: 80 }}</p>
                         </a>
                     </div>
                     <div class="archive-link">
-                        <a href="{{ '/logs-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
+                        <a href="{{ site.baseurl }}/logs-archive.html">このシリーズの全記録へ »</a>
                     </div>
                 </div>
                 {% endif %}
@@ -55,13 +55,13 @@ title: トップページ
                 <div class="update-card">
                     <div class="update-card-content">
                         <span class="update-label tweet-label">日々のつぶやき</span>
-                        <a href="{{ latest_tweet.url | relative_url }}">
+                        <a href="{{ site.baseurl }}{{ latest_tweet.url }}">
                             <h3>{{ latest_tweet.title }}</h3>
                             <p>{{ latest_tweet.content | strip_html | truncate: 80 }}</p>
                         </a>
                     </div>
                     <div class="archive-link">
-                        <a href="{{ '/tweets-archive.html' | relative_url }}">このシリーズの全記録へ »</a>
+                        <a href="{{ site.baseurl }}/tweets-archive.html">このシリーズの全記録へ »</a>
                     </div>
                 </div>
                 {% endif %}
@@ -69,81 +69,52 @@ title: トップページ
             </div>
         </section>
 
-<section class="section">
-    <h2 class="section-title">AIで遊んでみる</h2>
-    <p style="text-align:center;">AIが、あなたの今の気持ちや、隠れた才能を教えてくれるかも？</p>
-    
-    <!-- ▼▼▼ 3つのボタンが美しく並ぶ、最終形態のコンテナ ▼▼▼ -->
-    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
-        
-        <!-- ボタン1：お疲れ様診断（緑） -->
-        <a href="{{ site.baseurl }}/shindan-entrance.html" class="main-button" style="background-color: #2ecc71; margin: 10px; flex: 1; min-width: 280px;">
-            今日の「お疲れ様」診断
-            <span style="display: block; font-size: 0.7em; font-weight: normal;">（まずは気軽に1分で！）</span>
-        </a>
+        <section class="section intro">
+            <p><strong>『やってみると、なんとかなるもんだな。』</strong></p>
+            <p>このサイトは、様々な経験をしてきたアラフィフ親父が、AIという、<br>新しい相棒と悪戦苦闘しながら、日々の学びや気づきを発信する場所です。<br>『たまに登場』するアラサーマダムの前向きな奮闘記にもご期待ください。</p>
+            <p class="note">※時間がかかったり、まだ現在挑戦中なことの方が多いです。</p>
+        </section>
 
-        <!-- ボタン2：隠れた武器診断（赤） -->
-        <a href="{{ site.baseurl }}/shindan-job.html" class="main-button" style="background-color: #e74c3c; margin: 10px; flex: 1; min-width: 280px;">
-            「隠れた武器」発見診断
-            <span style="display: block; font-size: 0.7em; font-weight: normal;">（じっくり本格分析）</span>
-        </a>
+        <!-- ★★★ ここが、あなたの最終構想を反映した、唯一の「AIで遊んでみる」セクションです ★★★ -->
+        <section class="section">
+            <h2 class="section-title">AIで遊んでみる</h2>
+            <p style="text-align:center;">AIが、あなたの今の気持ちや、隠れた才能を教えてくれるかも？</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="{{ site.baseurl }}/shindan-category.html" class="main-button" style="background-color: #3498db;">
+                    診断メニューを見てみる
+                </a>
+            </div>
+        </section>
 
-        <!-- ボタン3：まとめサイト（青） -->
-        <a href="{{ site.baseurl }}/matome/matome-list.html" class="main-button" style="background-color: #3498db; margin: 10px; flex: 1; min-width: 280px;">
-            Python自動生成まとめ
-            <span style="display: block; font-size: 0.7em; font-weight: normal;">（過去の便利ツール一覧）</span>
-        </a>
-
-    </div>
-</section>
-    
-    <!-- ▼▼▼ 2つの診断ボタンを、ここに並べます ▼▼▼ -->
-    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
-        
-        <!-- ボタン1：お疲れ様診断 -->
-        <a href="{{ site.baseurl }}/shindan.html" class="main-button" style="background-color: #2ecc71; margin: 10px; width: 40%; min-width: 280px;">
-            今日の「お疲れ様」診断
-            <span style="display: block; font-size: 0.7em; font-weight: normal;">（まずは気軽に1分で！）</span>
-        </a>
-
-        <!-- ボタン2：仕事スタイル診断 -->
-        <a href="{{ site.baseurl }}/shindan-job.html" class="main-button" style="background-color: #e74c3c; margin: 10px; width: 40%; min-width: 280px;">
-            「隠れた武器」発見診断
-            <span style="display: block; font-size: 0.7em; font-weight: normal;">（じっくり本格分析）</span>
-        </a>
-
-    </div>
-</section>
-<section class="section intro">
-    <h2 class="section-title">初めての方へ</h2>
-    <p>専門用語に戸惑っていませんか？<br>俺が体当たりで理解した「IT用語の翻訳辞典」を用意しました。</p>
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="{{ '/dictionary.html' | relative_url }}" class="main-button" style="background-color: #2ecc71; max-width: 500px;">親父的・翻訳辞典を見てみる</a>
-    </div>
-</section>
+        <section class="section intro">
+            <h2 class="section-title">初めての方へ</h2>
+            <p>専門用語に戸惑っていませんか？<br>俺が体当たりで理解した「IT用語の翻訳辞典」を用意しました。</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="{{ site.baseurl }}/dictionary.html" class="main-button" style="background-color: #2ecc71; max-width: 500px;">親父的・翻訳辞典を見てみる</a>
+            </div>
+        </section>
 
         <section class="section">
             <h2 class="section-title">Categories - カテゴリー</h2>
             <div class="category-buttons">
-                <!-- ▼▼▼ あなたが減らした、最新のカテゴリーボタンです ▼▼▼ -->
-                <a href="{{ '/category/category-ai-challenge.html' | relative_url }}" class="category-btn ai-btn">#AI奮闘記</a>
-                <a href="{{ '/category/category-money.html' | relative_url }}" class="category-btn">#お金</a>
-                <a href="{{ '/category/category-sidejob.html' | relative_url }}" class="category-btn">#副業</a>
-                <a href="{{ '/category/category-shortcut.html' | relative_url }}" class="category-btn">#時短</a>
-                <a href="{{ '/category/category-efficiency.html' | relative_url }}" class="category-btn">#効率</a>
-                <a href="{{ '/category/category-trouble.html' | relative_url }}" class="category-btn">#悩み解決</a>
-                <a href="{{ '/category/category-wall.html' | relative_url }}" class="category-btn">#壁の越え方</a>
-                <a href="{{ '/category/category-fishing.html' | relative_url }}" class="category-btn">#釣り</a>
-                <a href="{{ '/category/category-marine.html' | relative_url }}" class="category-btn">#マリンスポーツ</a>
-                <a href="{{ '/category/category-diy.html' | relative_url }}" class="category-btn">#DIY</a>
-                <a href="{{ '/category/category-sales.html' | relative_url }}" class="category-btn">#営業</a>
-                <a href="{{ '/category/category-restate.html' | relative_url }}" class="category-btn">#不動産</a>
-                <a href="{{ '/category/category-unearned.html' | relative_url }}" class="category-btn">#不労所得</a>
-                <a href="{{ '/category/category-wallets.html' | relative_url }}" class="category-btn">#4つの財布</a>
-                <a href="{{ '/category/category-madam-friends.html' | relative_url }}" class="category-btn madam-btn">#ママ友</a>
-                <a href="{{ '/category/category-madam-kids.html' | relative_url }}" class="category-btn madam-btn">#子育て</a>
-                <a href="{{ '/category/category-madam-work.html' | relative_url }}" class="category-btn madam-btn">#共働き</a>
-                <a href="{{ '/category/category-madam-grumble.html' | relative_url }}" class="category-btn madam-btn">#旦那への愚痴🤬</a>
+                <a href="{{ site.baseurl }}/category/category-ai-challenge.html" class="category-btn ai-btn">#AI奮闘記</a>
+                <a href="{{ site.baseurl }}/category/category-money.html" class="category-btn">#お金</a>
+                <a href="{{ site.baseurl }}/category/category-sidejob.html" class="category-btn">#副業</a>
+                <a href="{{ site.baseurl }}/category/category-shortcut.html" class="category-btn">#時短</a>
+                <a href="{{ site.baseurl }}/category/category-efficiency.html" class="category-btn">#効率</a>
+                <a href="{{ site.baseurl }}/category/category-trouble.html" class="category-btn">#悩み解決</a>
+                <a href="{{ site.baseurl }}/category/category-wall.html" class="category-btn">#壁の越え方</a>
+                <a href="{{ site.baseurl }}/category/category-fishing.html" class="category-btn">#釣り</a>
+                <a href="{{ site.baseurl }}/category/category-marine.html" class="category-btn">#マリンスポーツ</a>
+                <a href="{{ site.baseurl }}/category/category-diy.html" class="category-btn">#DIY</a>
+                <a href="{{ site.baseurl }}/category/category-sales.html" class="category-btn">#営業</a>
+                <a href="{{ site.baseurl }}/category/category-restate.html" class="category-btn">#不動産</a>
+                <a href="{{ site.baseurl }}/category/category-unearned.html" class="category-btn">#不労所得</a>
+                <a href="{{ site.baseurl }}/category/category-wallets.html" class="category-btn">#4つの財布</a>
+                <a href="{{ site.baseurl }}/category/category-madam-friends.html" class="category-btn madam-btn">#ママ友</a>
+                <a href="{{ site.baseurl }}/category/category-madam-kids.html" class="category-btn madam-btn">#子育て</a>
+                <a href="{{ site.baseurl }}/category/category-madam-work.html" class="category-btn madam-btn">#共働き</a>
+                <a href="{{ site.baseurl }}/category/category-madam-grumble.html" class="category-btn madam-btn">#旦那への愚痴🤬</a>
             </div>
         </section>
         
@@ -157,7 +128,9 @@ title: トップページ
                 <img src="https://i.gyazo.com/6c65373a033f789d7b40939527ec3d9e.jpg" alt="PC・プログラミングのイメージ">
             </div>
         </section>
-    
-        </a>
+        
     </main>
+    <a href="{{ site.baseurl }}/matome/matome-list.html" class="main-button">
+    Python自動生成 まとめサイト一覧へ
+</a>
 </div>
