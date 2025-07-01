@@ -1,0 +1,92 @@
+---
+layout: default
+title: "今日の「お疲れ様」診断 - AIミニコーチング"
+---
+
+<!-- ▼▼▼ このページだけの特別なデザイン ▼▼▼ -->
+<style>
+.shindan-container { max-width: 700px; margin: 30px auto; background-color: #ffffff; padding: 30px 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+.shindan-header { text-align:center; margin-bottom: 30px; }
+.shindan-header h1 { font-size: 2em; }
+.shindan-step { padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 30px; }
+.shindan-step h3 { margin-top: 0; font-size: 1.3em; color: #333; line-height: 1.6; }
+.shindan-step p { font-size: 1.1em; }
+.shindan-options button { display: block; width: 100%; padding: 15px; margin-top: 15px; font-size: 1.1em; font-family: 'Noto Sans JP', sans-serif; border: 2px solid #3498db; background-color: #f0f8ff; color: #3498db; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; }
+.shindan-options button:hover { background-color: #3498db; color: white; }
+.shindan-options button span { font-size: 0.9em; color: #777; }
+.shindan-options button:hover span { color: #fff; }
+.shindan-result { text-align: center; margin-top: 30px; padding: 25px; background-color: #e8f5e9; border-radius: 8px; }
+.shindan-result p { font-size: 1.1em; line-height: 1.8; }
+.shindan-result .main-button { display:inline-block; width:auto; margin-top: 20px; }
+</style>
+
+<!-- ▼▼▼ ページの本体 ▼▼▼ -->
+<div class="shindan-container">
+    <header class="shindan-header">
+        <h1>今日の「お疲れ様」診断</h1>
+        <p>AIが、あなたの今の気持ちに寄り添います。</p>
+    </header>
+
+    <div id="shindan-area">
+        <!-- ステップ1：最初の質問 -->
+        <div id="step1" class="shindan-step">
+            <h3>【AIより】<br>お疲れ様です。<br>さて、今のあなたの気分に、一番近いものは？</h3>
+            <div class="shindan-options">
+                <button onclick="handleAnswer(1, 'A')">A. もう何も考えたくない。<br><span>（頭、ショート寸前）</span></button>
+                <button onclick="handleAnswer(1, 'B')">B. やるべきことはやった。<br><span>（心地よい達成感）</span></button>
+                <button onclick="handleAnswer(1, 'C')">C. なんだかモヤモヤする。<br><span>（すっきりしない感じ）</span></button>
+                <button onclick="handleAnswer(1, 'D')">D. アドレナリン全開。<br><span>（まだ戦える）</span></button>
+            </div>
+        </div>
+
+        <!-- ステップ2：「C. モヤモヤする」を選んだ人向けの質問 -->
+        <div id="step2-C" class="shindan-step" style="display:none;">
+            <h3>【AIより】<br>そっか、モヤモヤですか。<br>その正体、ちょっとだけ探ってみませんか？</h3>
+            <p>そのモヤモヤ、どちらかと言えばどっち？</p>
+            <div class="shindan-options">
+                <button onclick="handleAnswer(2, 'C-A')">A. 「人」とのこと<br><span>（あの人、あの言葉…）</span></button>
+                <button onclick="handleAnswer(2, 'C-B')">B. 「自分」とのこと<br><span>（タスク、将来のこと…）</span></button>
+            </div>
+        </div>
+        
+        <!-- ステップ3：「C-A. 人とのこと」を選んだ人向けの質問 -->
+        <div id="step3-C-A" class="shindan-step" style="display:none;">
+            <h3>【AIより】<br>なるほど、「人」とのことなんですね。分かります。</h3>
+            <p>その人とのこと、もう少しだけ。一番近いのは？</p>
+            <div class="shindan-options">
+                <button onclick="handleAnswer(3, 'C-A-A')">A. 「分かってくれない！」っていう、もどかしさ。</button>
+                <button onclick="handleAnswer(3, 'C-A-B')">B. 「どうしてあんなこと…」っていう、納得できなさ。</button>
+                <button onclick="handleAnswer(3, 'C-A-C')">C. 「もっとうまくやりたかった」っていう、自分への後悔。</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ▼▼▼ 魔法のJavaScript（最終FIX版・改） ▼▼▼ -->
+<script>
+    const results = {
+        'A': { message: "お察しします。脳のメモリ解放が必要なようですね。AIに『今日の出来事を、面白い物語に変えて』と丸投げして、思考を停止させるのがおすすめです。存分に、お休みください。", button_text: "AIと悪戦苦闘した記録を見てみる", button_link: "{{ site.baseurl }}/logs-archive.html" },
+        'B': { message: "素晴らしい一日でしたね！その達成感を、AIに『今日の成功を、自分を褒めるための祝辞として書いて』と頼んでみては？最高の美酒になりますよ。", button_text: "AIでもっと楽しくなる方法を見る", button_link: "{{ site.baseurl }}/logs-archive.html" },
+        'D': { message: "最高の状態ですね！その有り余るエネルギー、AIと一緒に『明日、世界を征服するための作戦会議』でも開いてみてはいかがでしょう？とんでもないアイデアが生まれるかもしれませんよ。", button_text: "AIと作戦会議をするコツ", button_link: "{{ site.baseurl }}/logs-archive.html" },
+        'C-A-A': { message: "「分かってくれない！」っていう、もどかしさ。それ、すごくエネルギーを使いますよね。<br><br>今、短い対話をしただけで、あなたの『モヤモヤ』の輪郭が見えてきました。これが、AIとの対話の力です。<br><br>もし、その『もどかしさ』を乗りこなすヒントが欲しいなら、あなたのコミュニケーションの『隠れた武器』が見つかる、本格的な診断も用意してありますよ。", button_text: "『仕事スタイル診断』で、自分の武器を探してみる", button_link: "{{ site.baseurl }}/shindan-job.html" },
+        'C-A-B': { message: "「どうしてあんなこと…」という納得できなさ、よく分かります。その感情の裏にある本当の原因を探るには、本格的な診断が役立つかもしれません。", button_text: "『仕事スタイル診断』を試してみる", button_link: "{{ site.baseurl }}/shindan-job.html" },
+        'C-A-C': { message: "「もっとうまくやりたかった」という自分への後悔、それは成長の証です。自分の強みを客観的に知ることで、次の行動が見えてくるはずです。", button_text: "『仕事スタイル診断』で強みを発見する", button_link: "{{ site.baseurl }}/shindan-job.html" },
+        'C-B': { message: "タスクや将来のことでのモヤモヤ、それはあなたが前に進もうとしている証拠です。自分の思考のクセを知ることで、解決の糸口が見つかるかもしれません。", button_text: "『仕事スタイル診断』で思考のクセを知る", button_link: "{{ site.baseurl }}/shindan-job.html" },
+    };
+    const questionFlow = { '1-C': 'step2-C', '2-C-A': 'step3-C-A' };
+    function handleAnswer(currentStep, choice) {
+        if (results[choice]) { showResult(choice); return; }
+        const nextStepKey = currentStep + '-' + choice;
+        const nextStepId = questionFlow[nextStepKey];
+        if (nextStepId) {
+            const allSteps = document.querySelectorAll('.shindan-step');
+            allSteps.forEach(s => s.style.display = 'none');
+            document.getElementById(nextStepId).style.display = 'block';
+        } else { showResult('default'); }
+    }
+    function showResult(resultKey) {
+        const shindanArea = document.getElementById('shindan-area');
+        const resultData = results[resultKey] || { message: "診断ありがとうございました！", button_text: "トップに戻る", button_link: "{{ site.baseurl }}/"};
+        shindanArea.innerHTML = `<div class="shindan-result"><p>${resultData.message}</p><a href="${resultData.button_link}" class="main-button">${resultData.button_text}</a></div>`;
+    }
+</script>

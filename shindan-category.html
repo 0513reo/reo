@@ -1,0 +1,56 @@
+---
+layout: default
+title: "AIで遊んでみる - 診断メニュー"
+---
+<style>
+.category-container { max-width: 900px; margin: 30px auto; padding: 20px; }
+.category-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+.category-column { width: 100%; } /* ★★★ ここのスペルミスを修正しました ★★★ */
+.category-column h2 { text-align: center; color: #fff; padding: 10px; border-radius: 8px; }
+.casual-title { background-color: #2ecc71; } /* お遊び系は緑 */
+.serious-title { background-color: #e74c3c; } /* 本格系は赤 */
+.shindan-link-card { display: block; color: #333; text-decoration: none; background-color: #fff; padding: 20px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.2s ease; }
+.shindan-link-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+.shindan-link-card h3 { margin-top: 0; }
+.shindan-link-card p { color: #555; }
+
+/* PCで見た時だけ、2列にするための設定 */
+@media (min-width: 768px) { 
+    .category-column { 
+        width: 48%; 
+    } 
+}
+</style>
+
+<div class="category-container">
+    <header style="text-align:center; margin-bottom: 40px;">
+        <h1 style="font-size: 2.2em;">AIで遊んでみる</h1>
+        <p>気になるものから、気軽に試してみてください。</p>
+    </header>
+
+    <div class="category-grid">
+        <!-- 左カラム：お遊び系診断 -->
+        <div class="category-column">
+            <h2 class="casual-title">今日の気分は？</h2>
+            <a href="{{ site.baseurl }}/shindan-entrance.html" class="shindan-link-card">
+                <h3>今日の「お疲れ様」診断</h3>
+                <p>今のあなたの気分に、AIが優しく寄り添います。</p>
+            </a>
+            <!-- ▼▼▼ 今後、ここに追加していく ▼▼▼ -->
+            <a href="#" class="shindan-link-card" style="opacity:0.5; cursor:not-allowed;"><h3>（準備中）ランチ占い</h3><p>今日のあなたに最適なランチを、AIが占います。</p></a>
+            <a href="#" class="shindan-link-card" style="opacity:0.5; cursor:not-allowed;"><h3>（準備中）集中力タイマー</h3><p>あなたの性格に合った音楽を、AIが選びます。</p></a>
+        </div>
+
+        <!-- 右カラム：本格分析系診断 -->
+        <div class="category-column">
+            <h2 class="serious-title">AI本格診断</h2>
+            <a href="{{ site.baseurl }}/shindan-job.html" class="shindan-link-card">
+                <h3>「隠れた武器」発見診断</h3>
+                <p>5つの質問で、あなたの仕事のスタイルを深く分析します。</p>
+            </a>
+            <!-- ▼▼▼ 今後、ここに追加していく ▼▼▼ -->
+            <a href="#" class="shindan-link-card" style="opacity:0.5; cursor:not-allowed;"><h3>（準備中）トラブル解決力診断</h3><p>あなたの問題解決の「型」をあぶり出します。</p></a>
+            <a href="#" class="shindan-link-card" style="opacity:0.5; cursor:not-allowed;"><h3>（準備中）AI相性診断</h3><p>あなたとAIの、最高の付き合い方が分かります。</p></a>
+        </div>
+    </div>
+</div>
