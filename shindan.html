@@ -63,6 +63,7 @@ title: "今日の「お疲れ様」診断 - AIミニコーチング"
 </div>
 
 <!-- ▼▼▼ 魔法のJavaScript（最終FIX版） ▼▼▼ -->
+<!-- ▼▼▼ 魔法のJavaScript（最終FIX版・改） ▼▼▼ -->
 <script>
     // --- 結果表示用の「答えの台本」を全て用意 ---
     const results = {
@@ -73,12 +74,12 @@ title: "今日の「お疲れ様」診断 - AIミニコーチング"
         },
         'B': {
             message: "素晴らしい一日でしたね！その達成感を、AIに『今日の成功を、自分を褒めるための祝辞として書いて』と頼んでみては？最高の美酒になりますよ。",
-            button_text: "AIと悪戦苦闘した記録を見てみる",
+            button_text: "AIでもっと楽しくなる方法を見る",
             button_link: "{{ site.baseurl }}/logs-archive.html"
         },
         'D': {
             message: "最高の状態ですね！その有り余るエネルギー、AIと一緒に『明日、世界を征服するための作戦会議』でも開いてみてはいかがでしょう？とんでもないアイデアが生まれるかもしれませんよ。",
-            button_text: "AIと悪戦苦闘した記録を見てみる",
+            button_text: "AIと作戦会議をするコツ",
             button_link: "{{ site.baseurl }}/logs-archive.html"
         },
         'C-A-A': {
@@ -103,24 +104,32 @@ title: "今日の「お疲れ様」診断 - AIミニコーチング"
         },
     };
 
+    // --- 質問の分岐ロジック ---
+    const questionFlow = {
+        '1-C': 'step2-C', // Q1でCを選んだら、step2-Cへ
+        '2-C-A': 'step3-C-A', // Q2でAを選んだら、step3-C-Aへ
+        // '2-C-B': 'step3-C-B' // 将来、Bの分岐を追加する時はここに書く
+    };
+
     function handleAnswer(currentStep, choice) {
-        // 現在のステップを隠す
-        document.getElementById('step' + currentStep).style.display = 'none';
-        
         // 最終結果を表示すべきか判断
         if (results[choice]) {
              showResult(choice);
              return;
         }
 
-        // 次のステップのIDを組み立てて表示
-        const nextStepId = 'step' + (currentStep + 1) + '-' + choice;
-        const nextStepElement = document.getElementById(nextStepId);
-        if (nextStepElement) {
-            nextStepElement.style.display = 'block';
+        // 次のステップのIDを探す
+        const nextStepKey = currentStep + '-' + choice;
+        const nextStepId = questionFlow[nextStepKey];
+
+        if (nextStepId) {
+            // 現在のステップを隠し、次のステップを表示
+            const allSteps = document.querySelectorAll('.shindan-step');
+            allSteps.forEach(s => s.style.display = 'none');
+            document.getElementById(nextStepId).style.display = 'block';
         } else {
-            // もし次のステップが定義されていなければ、仮の結果を表示
-            showResult('default'); 
+            // もし分岐がなければ（エラー防止）、仮の結果を表示
+            showResult('default');
         }
     }
 
@@ -128,15 +137,12 @@ title: "今日の「お疲れ様」診断 - AIミニコーチング"
         const shindanArea = document.getElementById('shindan-area');
         const resultData = results[resultKey] || { message: "診断ありがとうございました！", button_text: "トップに戻る", button_link: "{{ site.baseurl }}/"};
         
-        // 結果表示用のHTMLを作成
-        const resultHTML = `
+        // 診断エリアの中身を、結果表示にまるごと入れ替える
+        shindanArea.innerHTML = `
             <div class="shindan-result">
                 <p>${resultData.message}</p>
                 <a href="${resultData.button_link}" class="main-button">${resultData.button_text}</a>
             </div>
         `;
-        
-        // 診断エリアの中身を、結果表示にまるごと入れ替える
-        shindanArea.innerHTML = resultHTML;
     }
 </script>
