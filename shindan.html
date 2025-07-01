@@ -156,7 +156,6 @@ title: "あなたの仕事における「隠れた武器」発見診断"
 </div>
 
 <!-- ▼▼▼ 魔法のJavaScript (ここから下が診断を動かす心臓部です) ▼▼▼ -->
-<script>
     let currentQuestion = 1;
     const userAnswers = [];
 
@@ -185,63 +184,41 @@ title: "あなたの仕事における「隠れた武器」発見診断"
     };
 
     function answer(choice) {
-        // ユーザーの答えを記録
         userAnswers.push({ q: 'q' + currentQuestion, choice: choice });
-        
-        // 現在の質問を隠す
         document.getElementById('q' + currentQuestion).style.display = 'none';
-
         if (currentQuestion < 5) {
-            // 次の質問へ
             currentQuestion++;
-            // 次の質問を表示する
             document.getElementById('q' + currentQuestion).style.display = 'block';
         } else {
-            // 最後の質問が終わったら、結果を表示する
             showResult();
         }
     }
 
-function showResult() {
-    // 質問全体を隠す
-    document.getElementById('shindan-questions').style.display = 'none';
+    function showResult() {
+        document.getElementById('shindan-questions').style.display = 'none';
+        const typeNames = [];
+        const typeKeywords = {
+            q1: { A: "学者/研究者", B: "コミュニケーター/ジャーナリスト" },
+            q2: { A: "アジャイルな開発者", B: "プロの職人" },
+            q3: { A: "戦略家/指揮官", B: "ファシリテーター/プロデューサー" },
+            q4: { A: "堅実な実務家", B: "改革者/発明家" },
+            q5: { A: "品質の番人", B: "投資家/冒険家" }
+        };
 
-    // ★★★【改善点】ここから下を追加 ★★★
-    // まず、サマリー用の「タイプ名」を抽出する
-    const typeNames = [];
-    const typeKeywords = {
-        q1: { A: "学者/研究者", B: "コミュニケーター/ジャーナリスト" },
-        q2: { A: "アジャイルな開発者", B: "プロの職人" },
-        q3: { A: "戦略家/指揮官", B: "ファシリテーター/プロデューサー" },
-        q4: { A: "堅実な実務家", B: "改革者/発明家" },
-        q5: { A: "品質の番人", B: "投資家/冒険家" }
-    };
-    // ★★★ ここまで ★★★
+        for (let i = 0; i < userAnswers.length; i++) {
+            const answerData = userAnswers[i];
+            const resultElementId = 'result' + (i + 1);
+            const resultText = analysisData[answerData.q][answerData.choice];
+            document.getElementById(resultElementId).innerHTML = resultText;
+            typeNames.push(typeKeywords[answerData.q][answerData.choice]);
+        }
 
+        const summaryList = document.getElementById('summary-list');
+        typeNames.forEach(name => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `「${name}」のような側面`;
+            summaryList.appendChild(listItem);
+        });
 
-    // 記録した答えを元に、結果の文章を表示する
-    for (let i = 0; i < userAnswers.length; i++) {
-        const answerData = userAnswers[i]; // 例: { q: 'q1', choice: 'A' }
-        const resultElementId = 'result' + (i + 1);
-        const resultText = analysisData[answerData.q][answerData.choice];
-        document.getElementById(resultElementId).innerHTML = resultText;
-
-        // ★★★【改善点】ここを追加 ★★★
-        // 同時に、サマリー用のタイプ名をリストに追加する
-        typeNames.push(typeKeywords[answerData.q][answerData.choice]);
-        // ★★★ ここまで ★★★
+        document.getElementById('shindan-result').style.display = 'block';
     }
-
-    // ★★★【改善点】ここから下を追加 ★★★
-    // 抽出したタイプ名を、サマリーエリアに表示する
-    const summaryList = document.getElementById('summary-list');
-    typeNames.forEach(name => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `「${name}」のような側面`;
-        summaryList.appendChild(listItem);
-    });
-    // ★★★ ここまで ★★★
-
-    // 結果エリア全体を表示する
-    document.getElementById('shindan-result').style.display = 'block';
-}
