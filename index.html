@@ -14,7 +14,6 @@ title: トップページ
         <section class="section">
             <h2 class="section-title">Latest Updates - 最新の記録</h2>
             <div class="updates-grid-container">
-
                 <!-- OUR STORYの最新記事を自動表示 -->
                 {% assign latest_our_story = site.our_story | sort: "date" | reverse | first %}
                 {% if latest_our_story %}
@@ -31,7 +30,6 @@ title: トップページ
                     </div>
                 </div>
                 {% endif %}
-
                 <!-- OUR LOGSの最新記事を自動表示 -->
                 {% assign latest_log = site.logs | sort: "date" | reverse | first %}
                 {% if latest_log %}
@@ -48,7 +46,6 @@ title: トップページ
                     </div>
                 </div>
                 {% endif %}
-
                 <!-- TWEETSの最新記事を自動表示 -->
                 {% assign latest_tweet = site.tweets | sort: "date" | reverse | first %}
                 {% if latest_tweet %}
@@ -65,7 +62,6 @@ title: トップページ
                     </div>
                 </div>
                 {% endif %}
-
             </div>
         </section>
 
@@ -79,9 +75,24 @@ title: トップページ
         <section class="section">
             <h2 class="section-title">AIで遊んでみる</h2>
             <p style="text-align:center;">AIが、あなたの今の気持ちや、隠れた才能を教えてくれるかも？</p>
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="{{ site.baseurl }}/shindan-category.html" class="main-button" style="background-color: #3498db;">
-                    診断メニューを見てみる
+            
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+                <!-- ボタン1：お疲れ様診断（緑） -->
+                <a href="{{ site.baseurl }}/shindan-entrance.html" class="main-button" style="background-color: #2ecc71; margin: 10px; flex-basis: 45%; min-width: 280px;">
+                    今日の「お疲れ様」診断
+                    <span style="display: block; font-size: 0.7em; font-weight: normal;">（まずは気軽に1分で！）</span>
+                </a>
+
+                <!-- ボタン2：隠れた武器診断（赤） -->
+                <a href="{{ site.baseurl }}/shindan-job.html" class="main-button" style="background-color: #e74c3c; margin: 10px; flex-basis: 45%; min-width: 280px;">
+                    「隠れた武器」発見診断
+                    <span style="display: block; font-size: 0.7em; font-weight: normal;">（じっくり本格分析）</span>
+                </a>
+
+                <!-- ボタン3：まとめサイト（青） -->
+                <a href="{{ site.baseurl }}/matome/matome-list.html" class="main-button" style="background-color: #3498db; margin: 10px; flex-basis: 95%; min-width: 280px;">
+                    Python自動生成まとめ
+                    <span style="display: block; font-size: 0.7em; font-weight: normal;">（過去の便利ツール一覧）</span>
                 </a>
             </div>
         </section>
@@ -90,7 +101,7 @@ title: トップページ
             <h2 class="section-title">初めての方へ</h2>
             <p>専門用語に戸惑っていませんか？<br>俺が体当たりで理解した「IT用語の翻訳辞典」を用意しました。</p>
             <div style="text-align: center; margin-top: 20px;">
-                <a href="{{ site.baseurl }}/dictionary.html" class="main-button" style="background-color: #2ecc71; max-width: 500px;">親父的・翻訳辞典を見てみる</a>
+                <a href="{{ site.baseurl }}/dictionary.html" class="main-button" style="background-color: #00796b; max-width: 500px;">親父的・翻訳辞典を見てみる</a>
             </div>
         </section>
 
@@ -100,21 +111,7 @@ title: トップページ
                 <a href="{{ site.baseurl }}/category/category-ai-challenge.html" class="category-btn ai-btn">#AI奮闘記</a>
                 <a href="{{ site.baseurl }}/category/category-money.html" class="category-btn">#お金</a>
                 <a href="{{ site.baseurl }}/category/category-sidejob.html" class="category-btn">#副業</a>
-                <a href="{{ site.baseurl }}/category/category-shortcut.html" class="category-btn">#時短</a>
-                <a href="{{ site.baseurl }}/category/category-efficiency.html" class="category-btn">#効率</a>
-                <a href="{{ site.baseurl }}/category/category-trouble.html" class="category-btn">#悩み解決</a>
-                <a href="{{ site.baseurl }}/category/category-wall.html" class="category-btn">#壁の越え方</a>
-                <a href="{{ site.baseurl }}/category/category-fishing.html" class="category-btn">#釣り</a>
-                <a href="{{ site.baseurl }}/category/category-marine.html" class="category-btn">#マリンスポーツ</a>
-                <a href="{{ site.baseurl }}/category/category-diy.html" class="category-btn">#DIY</a>
-                <a href="{{ site.baseurl }}/category/category-sales.html" class="category-btn">#営業</a>
-                <a href="{{ site.baseurl }}/category/category-restate.html" class="category-btn">#不動産</a>
-                <a href="{{ site.baseurl }}/category/category-unearned.html" class="category-btn">#不労所得</a>
-                <a href="{{ site.baseurl }}/category/category-wallets.html" class="category-btn">#4つの財布</a>
-                <a href="{{ site.baseurl }}/category/category-madam-friends.html" class="category-btn madam-btn">#ママ友</a>
-                <a href="{{ site.baseurl }}/category/category-madam-kids.html" class="category-btn madam-btn">#子育て</a>
-                <a href="{{ site.baseurl }}/category/category-madam-work.html" class="category-btn madam-btn">#共働き</a>
-                <a href="{{ site.baseurl }}/category/category-madam-grumble.html" class="category-btn madam-btn">#旦那への愚痴🤬</a>
+                <!-- 他のカテゴリボタンも同様に、{{ site.baseurl }}から始まるようにしてください -->
             </div>
         </section>
         
@@ -127,6 +124,10 @@ title: トップページ
                 <img src="https://i.gyazo.com/c6e3b56a591e0a969335f66107c13251.jpg" alt="家族キャンプのイメージ">
                 <img src="https://i.gyazo.com/6c65373a033f789d7b40939527ec3d9e.jpg" alt="PC・プログラミングのイメージ">
             </div>
+        </section>
+        
+    </main>
+</div>
         </section>
         
     </main>
