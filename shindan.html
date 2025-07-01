@@ -3,78 +3,30 @@ layout: default
 title: "あなたの仕事における「隠れた武器」発見診断"
 ---
 
+<!-- ▼▼▼ このページだけの特別なデザイン ▼▼▼ -->
 <style>
-/* このページだけで使う特別なデザイン */
-.shindan-container {
-    max-width: 800px;
-    margin: 30px auto;
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-}
-.shindan-question {
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    margin-bottom: 30px;
-}
-.shindan-question h3 {
-    margin-top: 0;
-    font-size: 1.4em;
-    color: #333;
-}
-.shindan-options button {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    margin-top: 15px;
-    font-size: 1.1em;
-    font-family: 'Noto Sans JP', sans-serif;
-    border: 2px solid #3498db;
-    background-color: #f0f8ff;
-    color: #3498db;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-.shindan-options button:hover {
-    background-color: #3498db;
-    color: white;
-}
-#shindan-result {
-    display: none; /* 最初は結果を隠しておく */
-}
-#shindan-result h2 {
-    text-align: center;
-    color: #e74c3c;
-    border-bottom: 2px solid #e74c3c;
-    padding-bottom: 10px;
-}
-.analysis-item {
-    background-color: #f8f9fa;
-    border-left: 4px solid #3498db;
-    padding: 15px 20px;
-    margin-bottom: 20px;
-}
-.final-message {
-    text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    background-color: #e8f5e9;
-    border-radius: 8px;
-}
+.shindan-container { max-width: 800px; margin: 30px auto; background-color: #ffffff; padding: 30px 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+.shindan-question { padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 30px; }
+.shindan-question h3 { margin-top: 0; font-size: 1.4em; color: #333; }
+.shindan-options button { display: block; width: 100%; padding: 15px; margin-top: 15px; font-size: 1.1em; font-family: 'Noto Sans JP', sans-serif; border: 2px solid #3498db; background-color: #f0f8ff; color: #3498db; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; }
+.shindan-options button:hover { background-color: #3498db; color: white; }
+#shindan-result { display: none; }
+#shindan-result h2 { text-align: center; color: #e74c3c; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; }
+.analysis-item { background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 15px 20px; margin-bottom: 20px; }
+#result-summary { text-align: center; padding: 20px; }
+#summary-list { list-style: none; padding: 0; font-weight: bold; font-size: 1.2em; line-height: 1.8; }
+.final-message { text-align: center; margin-top: 40px; padding: 20px; background-color: #e8f5e9; border-radius: 8px; }
+.shindan-hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)); margin: 40px 0; }
 </style>
 
+<!-- ▼▼▼ ページの本体 ▼▼▼ -->
 <div class="shindan-container">
     <header style="text-align:center; margin-bottom: 30px;">
         <h1 style="font-size: 2em;">あなたの仕事における「隠れた武器」発見診断</h1>
         <p>5つの質問に直感で答えるだけで、あなたの中に眠る思考のクセが見えてきます。</p>
     </header>
 
-    <!-- ▼▼▼ 質問エリア ▼▼▼ -->
     <div id="shindan-questions">
-        <!-- 質問1 -->
         <div class="shindan-question" id="q1">
             <h3>【質問1】<br>全く未経験の、巨大なプロジェクトを任された。あなたの最初の一手は？</h3>
             <div class="shindan-options">
@@ -82,7 +34,6 @@ title: "あなたの仕事における「隠れた武器」発見診断"
                 <button onclick="answer('B')">B. とにかく経験者にアポを取り、「教えてください！」と頭を下げて話を聞きに行く。</button>
             </div>
         </div>
-        <!-- 質問2 (最初は隠しておく) -->
         <div class="shindan-question" id="q2" style="display:none;">
             <h3>【質問2】<br>締め切りまであと1日。でも、資料のクオリティはまだ60点。どうする？</h3>
             <div class="shindan-options">
@@ -90,7 +41,6 @@ title: "あなたの仕事における「隠れた武器」発見診断"
                 <button onclick="answer('B')">B. 「中途半端なものは出せない」と、徹夜してでもクオリティを80点、90点に引き上げる。</button>
             </div>
         </div>
-        <!-- 質問3 (最初は隠しておく) -->
         <div class="shindan-question" id="q3" style="display:none;">
             <h3>【質問3】<br>あなたのチームが、大きな成功を収めた。その時、あなたが最も喜びを感じるのは？</h3>
             <div class="shindan-options">
@@ -98,7 +48,6 @@ title: "あなたの仕事における「隠れた武器」発見診断"
                 <button onclick="answer('B')">B. チームメンバー全員が、笑顔でハイタッチしている光景を見ること。</button>
             </div>
         </div>
-        <!-- 質問4 (最初は隠しておく) -->
         <div class="shindan-question" id="q4" style="display:none;">
              <h3>【質問4】<br>仕事で、どうしても避けられない「面倒な事務作業」。どう向き合う？</h3>
             <div class="shindan-options">
@@ -106,7 +55,6 @@ title: "あなたの仕事における「隠れた武器」発見診断"
                 <button onclick="answer('B')">B. 「もっと楽な方法はないか？」と、自動化ツールや効率的な手順を常に探す。</button>
             </div>
         </div>
-        <!-- 質問5 (最初は隠しておく) -->
         <div class="shindan-question" id="q5" style="display:none;">
             <h3>【質問5】<br>あなたが最も「許せない」と感じる仕事のミスは？</h3>
             <div class="shindan-options">
@@ -116,44 +64,90 @@ title: "あなたの仕事における「隠れた武器」発見診断"
         </div>
     </div>
 
-<div id="shindan-result">
-    <h2>【AIからの分析レポート】</h2>
-    <!-- 分析材料(質問1)の表示エリア -->
-    <div id="result1" class="analysis-item"></div>
-    <!-- 分析材料(質問2)の表示エリア -->
-    <div id="result2" class="analysis-item"></div>
-    <!-- 分析材料(質問3)の表示エリア -->
-    <div id="result3" class="analysis-item"></div>
-    <!-- 分析材料(質問4)の表示エリア -->
-    <div id="result4" class="analysis-item"></div>
-    <!-- 分析材料(質問5)の表示エリア -->
-    <div id="result5" class="analysis-item"></div>
-
-    <!-- ★★★【改善点】ここから下を追加・変更 ★★★ -->
-
-    <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)); margin: 40px 0;">
-
-    <!-- ▼▼▼ ここに「まとめ」を表示する新しい箱を追加 ▼▼▼ -->
-    <div id="result-summary" style="text-align: center; padding: 20px;">
-        <h3>あなたの傾向まとめ</h3>
-        <p>これらの分析をまとめると、あなたは…</p>
-        <ul id="summary-list" style="list-style: none; padding: 0; font-weight: bold; font-size: 1.2em; line-height: 1.8;">
-            <!-- ここにJavaScriptでまとめが挿入されます -->
-        </ul>
-    </div>
-
-    <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)); margin: 40px 0;">
-    
-    <div class="final-message">
-        <p style="font-weight: bold;">あなたという人間の、複雑で面白い一面が見えた気がします。</p>
-        <p>AIは、このようにあなたが選んだ言葉から、思考の「傾向」を客観的に分析するのが得意です。<br>でも、これはまだ入り口に過ぎません。</p>
-        <p>AIの本当の得意分野は、ここからの<strong>『対話による深掘り』</strong>です。<br>今日の分析結果を元に、「なぜ自分はそう考えるんだろう？」と問いかけたり、視点を変えた質問を投げかけたりすることで、AIはあなたの思考を整理し、磨き上げるための、最高のパートナーになります。</p>
-        <p>もし、あなたが「もっと自分を知りたい」「AIという道具を使いこなしてみたい」と思われたなら。<br>ぜひ一度、ChatGPTやGeminiに、今日のこの結果を伝えて、話しかけてみてください。</p>
-        <p style="font-weight: bold; font-size: 1.2em;">世界が変わるかもしれませんよ。</p>
-        
-        <a href="{{ '/logs/2025-07-01-inconvenience-list.html' | relative_url }}" class="main-button" style="display:inline-block; width:auto; margin-top: 20px;">AIとの対話、最初の一歩はこれだ！</a>
+    <div id="shindan-result">
+        <h2>【AIからの分析レポート】</h2>
+        <div id="result1" class="analysis-item"></div>
+        <div id="result2" class="analysis-item"></div>
+        <div id="result3" class="analysis-item"></div>
+        <div id="result4" class="analysis-item"></div>
+        <div id="result5" class="analysis-item"></div>
+        <hr class="shindan-hr">
+        <div id="result-summary">
+            <h3>あなたの傾向まとめ</h3>
+            <p>これらの分析をまとめると、あなたは…</p>
+            <ul id="summary-list"></ul>
+        </div>
+        <hr class="shindan-hr">
+        <div class="final-message">
+            <p style="font-weight: bold;">あなたという人間の、複雑で面白い一面が見えた気がします。</p>
+            <p>AIは、このようにあなたが選んだ言葉から、思考の「傾向」を客観的に分析するのが得意です。<br>でも、これはまだ入り口に過ぎません。</p>
+            <p>AIの本当の得意分野は、ここからの<strong>『対話による深掘り』</strong>です。<br>今日の分析結果を元に、「なぜ自分はそう考えるんだろう？」と問いかけたり、視点を変えた質問を投げかけたりすることで、AIはあなたの思考を整理し、磨き上げるための、最高のパートナーになります。</p>
+            <p>もし、あなたが「もっと自分を知りたい」「AIという道具を使いこなしてみたい」と思われたなら。<br>ぜひ一度、ChatGPTやGeminiに、今日のこの結果を伝えて、話しかけてみてください。</p>
+            <p style="font-weight: bold; font-size: 1.2em;">世界が変わるかもしれませんよ。</p>
+            <a href="{{ '/logs/2025-07-01-inconvenience-list.html' | relative_url }}" class="main-button" style="display:inline-block; width:auto; margin-top: 20px;">AIとの対話、最初の一歩はこれだ！</a>
+        </div>
     </div>
 </div>
 
-<!-- ▼▼▼ 魔法のJavaScript (ここから下が診断を動かす心臓部です) ▼▼▼ -->
-<script src="{{ site.baseurl }}/assets/js/shindan.js"></script>
+<!-- ▼▼▼ 魔法のJavaScript（完成版） ▼▼▼ -->
+<script>
+    let currentQuestion = 1;
+    const userAnswers = [];
+    const analysisData = {
+        q1: {
+            A: "<h4>分析材料①：行動の起点 -「知の探求者」の側面</h4><p>あなたは、未知の課題に直面した時、まず理論や知識で全体像を把握しようとする傾向がありますね。闇雲に動き出すのではなく、まず自分の頭の中に「地図」を描こうとする。これは、物事を体系的に捉え、確実な一歩を踏み出す<strong>「学者」や「研究者」</strong>のような資質と言えるかもしれません。</p>",
+            B: "<h4>分析材料①：行動の起点 -「実践的対話者」の側面</h4><p>あなたは、未知の課題に直面した時、一人で考え込むよりも、まず人に会い、対話の中から答えを見つけ出そうとする傾向がありますね。知識よりも経験を、理論よりも現場の声を重視する。これは、人との繋がりを力に変える<strong>「コミュニケーター」</strong>や<strong>「ジャーナリスト」</strong>のような資質と言えるかもしれません。</p>"
+        },
+        q2: {
+            A: "<h4>分析材料②：完成の定義 -「改善主義者」の側面</h4><p>あなたは、完璧なものを一度で作り上げるよりも、不完全でもまず形にし、他者からのフィードバックを得て改善していくことを是とするスタイルのようです。これは、失敗を恐れず、対話の中からより良い答えを見つけ出そうとする、柔軟で<strong>アジャイル（俊敏）な開発者</strong>のような思考パターンです。</p>",
+            B: "<h4>分析材料②：品質の追求者 -「職人」の側面</h4><p>あなたは、自分の仕事に高いプライドを持ち、中途半端な状態で世に出すことを良しとしない傾向がありますね。時間に追われても、守るべき品質のラインは譲らない。これは、自らの成果物に責任を持つ、プロフェッショナルな<strong>「職人」</strong>のようなスピリットです。</p>"
+        },
+        q3: {
+            A: "<h4>分析材料③：喜びの源泉 -「戦略家」の側面</h4><p>あなたのモチベーションは、チームの成功の中でも、特に「自分の描いた戦略や貢献が正しかった」と証明される瞬間に、強く湧き出てくるようですね。プロセスよりも結果を、感情よりも論理を重視する。これは、勝利への道筋を描き、実行する<strong>「戦略家」</strong>や<strong>「指揮官」</strong>の資質です。</p>",
+            B: "<h4>分析材料③：喜びの源泉 -「調和の創造者」の側面</h4><p>あなたのモチベーションは、個人的な成功よりも、チーム全体の成功や、そこに生まれる一体感から強く湧き出てくるようですね。自分が主役になることよりも、チームという「場」が良い雰囲気になることに価値を見出す。これは、優れた<strong>「ファシリテーター（進行役）」</strong>や<strong>「プロデューサー」</strong>が持つべき視点です。</p>"
+        },
+        q4: {
+            A: "<h4>分析材料④：問題への対処法 -「堅実な実行者」の側面</h4><p>あなたは、目の前の課題に対し、ルールや決められた手順に従って、着実に処理していくことを得意とするようですね。創造性よりも規律を、革新よりも安定を重んじる。これは、組織を支える上で不可欠な<strong>「実務家」</strong>や<strong>「管理者」</strong>の強みです。</p>",
+            B: "<h4>分析材料④：問題への対処法 -「改革者」の側面</h4><p>あなたは、目の前の面倒な作業をただこなすのではなく、常に「もっと良い方法はないか？」と問い続け、現状を疑う姿勢を持っています。現状維持を良しとせず、非効率なものを改善しようとする。これは、物事をより良く変えていこうとする<strong>「改革者」</strong>や<strong>「発明家」</strong>のスピリットです。</p>"
+        },
+        q5: {
+            A: "<h4>分析材料⑤：リスクの捉え方 -「品質の番人」の側面</h4><p>あなたにとってのリスクとは、防げたはずのケアレスミスによって、信頼や品質を損なうことにあるようですね。細部への注意を怠らず、ミスのない完璧な仕事を目指す。これは、信頼性の高いシステムを構築する<strong>「エンジニア」</strong>や<strong>「監査役」</strong>のような価値観です。</p>",
+            B: "<h4>分析材料⑤：リスクの捉え方 -「機会の探求者」の側面</h4><p>あなたにとってのリスクとは、挑戦しないことで未来の可能性を失うことにあるようですね。小さなミスを恐れて立ち止まるよりも、大きなチャンスを掴むために未知の領域へ飛び込むことを選ぶ。これは、未来の可能性に賭ける<strong>「投資家」</strong>や<strong>「冒険家」</strong>に近い価値観かもしれません。</p>"
+        }
+    };
+    function answer(choice) {
+        userAnswers.push({ q: 'q' + currentQuestion, choice: choice });
+        document.getElementById('q' + currentQuestion).style.display = 'none';
+        if (currentQuestion < 5) {
+            currentQuestion++;
+            document.getElementById('q' + currentQuestion).style.display = 'block';
+        } else {
+            showResult();
+        }
+    }
+    function showResult() {
+        document.getElementById('shindan-questions').style.display = 'none';
+        const typeNames = [];
+        const typeKeywords = {
+            q1: { A: "学者/研究者", B: "コミュニケーター/ジャーナリスト" },
+            q2: { A: "アジャイルな開発者", B: "プロの職人" },
+            q3: { A: "戦略家/指揮官", B: "ファシリテーター/プロデューサー" },
+            q4: { A: "堅実な実務家", B: "改革者/発明家" },
+            q5: { A: "品質の番人", B: "投資家/冒険家" }
+        };
+        for (let i = 0; i < userAnswers.length; i++) {
+            const answerData = userAnswers[i];
+            const resultElementId = 'result' + (i + 1);
+            const resultText = analysisData[answerData.q][answerData.choice];
+            document.getElementById(resultElementId).innerHTML = resultText;
+            typeNames.push(typeKeywords[answerData.q][answerData.choice]);
+        }
+        const summaryList = document.getElementById('summary-list');
+        typeNames.forEach(name => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `「${name}」のような側面`;
+            summaryList.appendChild(listItem);
+        });
+        document.getElementById('shindan-result').style.display = 'block';
+    }
+</script>
