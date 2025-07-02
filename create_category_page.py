@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------
-# 【最終確定版】Jekyllコレクション対応！全自動カテゴリページ生成プログラム
+# 【最終完成版】Jekyllコレクション対応！全自動カテゴリページ生成プログラム
 # ----------------------------------------------------------------
 import os
 import glob
@@ -58,20 +58,13 @@ def find_relevant_posts(keyword, collection_folders):
                     title_match = re.search(r'title:\s*["\']?(.*?)["\']?\s*$', parts[1], re.MULTILINE)
                     title = title_match.group(1).strip() if title_match else "タイトル不明"
 
-                    date_str_match = re.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(filepath))
-                    if date_str_match:
-                        date_str = date_str_match.group(1)
-                        post_date = datetime.strptime(date_str, "%Y-%m-%d")
-                    else: 
-                        date_obj_match = re.search(r'date:\s*(\d{4}-\d{2}-\d{2})', parts[1])
-                        if date_obj_match:
-                            post_date = datetime.strptime(date_obj_match.group(1), "%Y-%m-%d")
-                        else:
-                            post_date = datetime.fromtimestamp(os.path.getmtime(filepath))
+                    date_obj_match = re.search(r'date:\s*(\d{4}-\d{2}-\d{2})', parts[1])
+                    if date_obj_match:
+                        post_date = datetime.strptime(date_obj_match.group(1), "%Y-%m-%d")
+                    else:
+                        post_date = datetime.fromtimestamp(os.path.getmtime(filepath))
 
-                    # 拡張子を取り除いてURLのベースを生成
                     post_url_base = os.path.splitext(os.path.basename(filepath))[0]
-                    # Jekyllが生成する正しいURL形式に合わせる
                     post_url = f"/{folder.replace('_','')}/{post_url_base}.html"
                     
                     found_posts.append({ 'title': title, 'url': post_url, 'date': post_date })
@@ -85,21 +78,19 @@ def create_category_page_for_jekyll(keyword, posts_data, output_filepath):
     """Jekyll用のカテゴリページ（HTML）を生成する"""
     print(f"--- HTMLファイルを生成しています: {output_filepath} ---")
     
-    front_matter = f"""---
-layout: default
-title: "「{keyword}」に関する記事まとめ
-class: archive-page
+    # ★★★ ここが最重要修正点！ post.html と同じ骨組みを生成するように変更 ★★★
+    page_content = f"""---
+layout: post
+title: 「{keyword}」に関する記事まとめ
 ---
+
+<ul class="archive-list">
 """
-    
-    # ★★★ ここが最重要修正点！ リンクの構文を、最も安全な形式に修正 ★★★
-    cards_html = "<ul class='archive-list'>"
     if not posts_data:
-        cards_html += "<li><p>このカテゴリに関連する記事はまだありません。</p></li>"
+        page_content += "<li><p>このカテゴリに関連する記事はまだありません。</p></li>"
     else:
         for post in posts_data:
-            # post.url は /collection/filename.html の形式になっている
-            cards_html += f"""
+            page_content += f"""
             <li>
                 <a href="{{{{ '{post['url']}' | relative_url }}}}">
                     <span class="post-title">{post['title']}</span>
@@ -107,21 +98,7 @@ class: archive-page
                 </a>
             </li>
             """
-    cards_html += "</ul>"
-
-    page_content = f"""
-<div class="container">
-    <header class="section-title">
-        <h1>「{keyword}」に関する記事まとめ</h1>
-    </header>
-    {cards_html}
-    <div class="back-link" style="text-align: center; margin-top: 50px;">
-        <a href="{{{{ '/' | relative_url }}}}" class="back-button">« トップページに戻る</a>
-    </div>
-</div>
-"""
-    
-    final_content = front_matter + page_content
+    page_content += "</ul>"
     
     output_dir = os.path.dirname(output_filepath)
     if output_dir and not os.path.exists(output_dir):
@@ -129,7 +106,7 @@ class: archive-page
         print(f"フォルダ '{output_dir}' を作成しました。")
 
     with open(output_filepath, "w", encoding="utf-8") as f:
-        f.write(final_content)
+        f.write(page_content)
     print(f"🎉 成功！ 「{output_filepath}」が作成されました。")
 
 if __name__ == "__main__":
