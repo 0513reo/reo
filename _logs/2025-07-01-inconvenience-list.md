@@ -4,12 +4,6 @@ title: "【アラフィフおやじのボヤキ】AIで解決したい、日常�
 collection: "logs"
 ---
 
-<div class="container blog-post">
-    <header style="text-align:center; margin-bottom: 20px;">
-        <h1 style="font-size: 2.2em; border-bottom: 2px solid #eee; padding-bottom:10px; margin-bottom: 5px;">{{ page.title }}</h1>
-    </header>
-
-    <div class="content">
         <div class="step-box">
         <!-- ▼▼▼ ここに本文を書く（以下の文章はタタキ台です。あなたの言葉で書き直してください） ▼▼▼ -->
 

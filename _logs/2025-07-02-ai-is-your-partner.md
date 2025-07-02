@@ -5,11 +5,6 @@ collection: "logs"
 date: 2025-07-02 10:00:00 +0900
 hidden: true
 ---
-<div class="container blog-post">
-    <header style="text-align:center; margin-bottom: 20px;">
-        <h1 style="font-size: 2.2em; border-bottom: 2px solid #eee; padding-bottom:10px; margin-bottom: 5px;">{{ page.title }}</h1>
-    </header>
-    <div class="content">
         <div class="attention-box">
             <p style="font-weight: bold; text-align: center;">このサイトは、100%（言葉つかいだけ修正）AIが作ったものです。</p>
             <p>このサイトに設置した診断ツール。あれは、AIに「こんなの作りたい」「こんなのできない？」と、指示を聞いてもらい作りました。<br>
