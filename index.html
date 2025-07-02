@@ -15,8 +15,6 @@ title: トップページ
             <h2 class="section-title">Latest Updates - 最新の記録</h2>
             <div class="updates-grid-container">
 
-                <!-- ★★★ ここからが修正箇所 ★★★ -->
-
                 <!-- OUR STORY -->
                 {% assign visible_stories = site.our_story | where_exp:"item", "item.hidden != true" %}
                 {% assign latest_our_story = visible_stories | sort: "date" | reverse | first %}
@@ -71,157 +69,38 @@ title: トップページ
                 </div>
                 {% endif %}
                 
-                <!-- ★★★ 修正箇所ここまで ★★★ -->
-
             </div>
         </section>
 
-        <!-- 以降のセクションは変更なし -->
         <section class="section intro">
             <p><strong>『やってみると、なんとかなるもんだな。』</strong></p>
             <p>このサイトは、様々な経験をしてきたアラフィフ親父が、AIという、<br>新しい相棒と悪戦苦闘しながら、日々の学びや気づきを発信する場所です。<br>『たまに登場』するアラサーマダムの前向きな奮闘記にもご期待ください。</p>
             <p class="note">※時間がかかったり、まだ現在挑戦中なことの方が多いです。</p>
         </section>
-        
-        <!-- 他のセクション... -->
 
-    </main>
-</div>
-Use code with caution.
-Html
-【このコードのポイント】
-where_exp:"item", "item.hidden != true" という魔法の言葉を追加しました。これは、「記事一覧の中から、hidden: true が付いていないものだけを、まず選び出してください」という命令です。その選び出された記事の中から、最新のものを表示するようにしたため、非表示記事がトップページに出てくることがなくなります。
-ステップ2：診断結果ページのリンクを修正する
-次に、「隠れた武器」発見診断の結果ページ（スクリーンショット2枚目）の最後のボタンが、正しい特定の記事にリンクするように修正します。
-あなたが貼り付けてくださったコードの2番目のブロック（title: "あなたの仕事における「隠れた武器」発見診断" で始まるファイル）の全文を、以下のコードに置き換えてください。
-【リンク修正版】 shindan-job.html（隠れた武器 発見診断）
-Generated html
----
-layout: default
-title: "あなたの仕事における「隠れた武器」発見診断"
----
-
-<!-- このページだけの特別なデザイン（変更なし） -->
-<style>
-.shindan-container { max-width: 800px; margin: 30px auto; background-color: #ffffff; padding: 30px 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
-.shindan-question { padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 30px; }
-.shindan-question h3 { margin-top: 0; font-size: 1.4em; color: #333; }
-.shindan-options button { display: block; width: 100%; padding: 15px; margin-top: 15px; font-size: 1.1em; font-family: 'Noto Sans JP', sans-serif; border: 2px solid #3498db; background-color: #f0f8ff; color: #3498db; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; }
-.shindan-options button:hover { background-color: #3498db; color: white; }
-#shindan-result { display: none; }
-#shindan-result h2 { text-align: center; color: #e74c3c; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; }
-.analysis-item { background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 15px 20px; margin-bottom: 20px; }
-#result-summary { text-align: center; padding: 20px; }
-.final-message { text-align: center; margin-top: 40px; padding: 20px; background-color: #e8f5e9; border-radius: 8px; }
-.shindan-hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)); margin: 40px 0; }
-</style>
-
-<!-- ページの本体（質問部分は変更なし） -->
-<div class="shindan-container">
-    <header style="text-align:center; margin-bottom: 30px;">
-        <h1 style="font-size: 2em;">あなたの仕事における「隠れた武器」発見診断</h1>
-        <p>5つの質問に直感で答えるだけで、あなたの中に眠る思考のクセが見えてきます。</p>
-    </header>
-
-    <div id="shindan-questions">
-        <!-- 質問1から5までは変更なし -->
-        <div class="shindan-question" id="q1"><h3 class="question-title">【質問1】<br>全く未経験の、巨大なプロジェクトを任された。あなたの最初の一手は？</h3><div class="shindan-options"><button onclick="answer('A')">A. まずは関連書籍を読み、ネットで情報を集め、完璧な計画書を練り上げる。</button><button onclick="answer('B')">B. とにかく経験者にアポを取り、「教えてください！」と頭を下げて話を聞きに行く。</button></div></div>
-        <div class="shindan-question" id="q2" style="display:none;"><h3 class="question-title">【質問2】<br>締め切りまであと1日。でも、資料のクオリティはまだ60点。どうする？</h3><div class="shindan-options"><button onclick="answer('A')">A. 「60点でも、まずは出す」と割り切り、提出して上司や顧客からのフィードバックを待つ。</button><button onclick="answer('B')">B. 「中途半端なものは出せない」と、徹夜してでもクオリティを80点、90点に引き上げる。</button></div></div>
-        <div class="shindan-question" id="q3" style="display:none;"><h3 class="question-title">【質問3】<br>あなたのチームが、大きな成功を収めた。その時、あなたが最も喜びを感じるのは？</h3><div class="shindan-options"><button onclick="answer('A')">A. 「自分の立てた戦略が正しかった」と、自分の貢献が認められること。</button><button onclick="answer('B')">B. チームメンバー全員が、笑顔でハイタッチしている光景を見ること。</button></div></div>
-        <div class="shindan-question" id="q4" style="display:none;"><h3 class="question-title">【質問4】<br>仕事で、どうしても避けられない「面倒な事務作業」。どう向き合う？</h3><div class="shindan-options"><button onclick="answer('A')">A. 「これも仕事のうち」と割り切り、時間を決めて一気に片付ける。</button><button onclick="answer('B')">B. 「もっと楽な方法はないか？」と、自動化ツールや効率的な手順を常に探す。</button></div></div>
-        <div class="shindan-question" id="q5" style="display:none;"><h3 class="question-title">【質問5】<br>あなたが最も「許せない」と感じる仕事のミスは？</h3><div class="shindan-options"><button onclick="answer('A')">A. 確認を怠ったことによる、防げたはずの「凡ミス」。</button><button onclick="answer('B')">B. 新しい挑戦を恐れて何もしなかったことによる、「機会損失」。</button></div></div>
-    </div>
-
-    <div id="shindan-result">
-        <h2>【AIからの分析レポート】</h2>
-        <div id="result1" class="analysis-item"></div>
-        <div id="result2" class="analysis-item"></div>
-        <div id="result3" class="analysis-item"></div>
-        <div id="result4" class="analysis-item"></div>
-        <div id="result5" class="analysis-item"></div>
-        <hr class="shindan-hr">
-        <div id="result-summary"></div>
-        <hr class="shindan-hr">
-        <div class="final-message">
-            <p style="font-weight: bold;">あなたという人間の、複雑で面白い一面が見えた気がします。</p>
-            <p>AIは、このようにあなたが選んだ言葉から、思考の「傾向」を客観的に分析するのが得意です。<br>でも、これはまだ入り口に過ぎません。</p>
-            <p>AIの本当の得意分野は、ここからの<strong>『対話による深掘り』</strong>です。<br>今日の分析結果を元に、「なぜ自分はそう考えるんだろう？」と問いかけたり、視点を変えた質問を投げかけたりすることで、AIはあなたの思考を整理し、磨き上げるための、最高のパートナーになります。</p>
-            <p>もし、あなたが「もっと自分を知りたい」「AIという道具を使いこなしてみたい」と思われたなら。<br>ぜひ一度、ChatGPTやGeminiに、今日のこの結果を伝えて、話しかけてみてください。</p>
-            <p style="font-weight: bold; font-size: 1.2em;">世界が変わるかもしれませんよ。</p>
+        <section class="section">
+            <h2 class="section-title">AIで遊んでみる</h2>
+            <p style="text-align:center;">AIが、あなたの今の気持ちや、隠れた才能を教えてくれるかも？</p>
             
-            <!-- ★★★ ここが修正箇所！ 正しい記事へのリンクとボタンテキストに変更 ★★★ -->
-            {% assign target_post_title = "プログラマーじゃない人が、AIだけで作ったサイト概要" %}
-            {% assign target_post = site.logs | where:"title", target_post_title | first %}
-            {% if target_post %}
-            <a href="{{ target_post.url | relative_url }}" class="main-button" style="display:inline-block; width:auto; margin-top: 20px;">AIとの対話、最初の一歩はこれだ！</a>
-            {% else %}
-            <!-- 万が一見つからなかった場合でも、ログ一覧には飛べるようにしておく -->
-            <a href="{{ '/logs-archive.html' | relative_url }}" class="main-button" style="display:inline-block; width:auto; margin-top: 20px;">AIと悪戦苦闘した記録を見てみる</a>
-            {% endif %}
-        </div>
-    </div>
-</div>
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+                <!-- ボタン1：お疲れ様診断（緑） -->
+                <a href="{{ site.baseurl }}/shindan-entrance.html" class="main-button" style="background-color: #2ecc71; margin: 10px; flex-basis: 45%; min-width: 280px;">
+                    今日の「お疲れ様」診断
+                    <span style="display: block; font-size: 0.7em; font-weight: normal;">（まずは気軽に1分で！）</span>
+                </a>
 
-<!-- JavaScript部分は変更なし -->
-<script>
-    let currentQuestion = 1;const userAnswers = [];
-    const analysisData = {
-        q1: { A: "<h4>分析材料①：行動の起点 -「知の探求者」の側面</h4><p>あなたは、未知の課題に直面した時、まず理論や知識で全体像を把握しようとする傾向がありますね。闇雲に動き出すのではなく、まず自分の頭の中に「地図」を描こうとする。これは、物事を体系的に捉え、確実な一歩を踏み出す<strong>「学者」や「研究者」</strong>のような資質と言えるかもしれません。</p>", B: "<h4>分析材料①：行動の起点 -「実践的対話者」の側面</h4><p>あなたは、未知の課題に直面した時、一人で考え込むよりも、まず人に会い、対話の中から答えを見つけ出そうとする傾向がありますね。知識よりも経験を、理論よりも現場の声を重視する。これは、人との繋がりを力に変える<strong>「コミュニケーター」</strong>や<strong>「ジャーナリスト」</strong>のような資質と言えるかもしれません。</p>" },
-        q2: { A: "<h4>分析材料②：完成の定義 -「改善主義者」の側面</h4><p>あなたは、完璧なものを一度で作り上げるよりも、不完全でもまず形にし、他者からのフィードバックを得て改善していくことを是とするスタイルのようです。これは、失敗を恐れず、対話の中からより良い答えを見つけ出そうとする、柔軟で<strong>アジャイル（俊敏）な開発者</strong>のような思考パターンです。</p>", B: "<h4>分析材料②：品質の追求者 -「職人」の側面</h4><p>あなたは、自分の仕事に高いプライドを持ち、中途半端な状態で世に出すことを良しとしない傾向がありますね。時間に追われても、守るべき品質のラインは譲らない。これは、自らの成果物に責任を持つ、プロフェッショナルな<strong>「職人」</strong>のようなスピリットです。</p>" },
-        q3: { A: "<h4>分析材料③：喜びの源泉 -「戦略家」の側面</h4><p>あなたのモチベーションは、チームの成功の中でも、特に「自分の描いた戦略や貢献が正しかった」と証明される瞬間に、強く湧き出てくるようですね。プロセスよりも結果を、感情よりも論理を重視する。これは、勝利への道筋を描き、実行する<strong>「戦略家」</strong>や<strong>「指揮官」</strong>の資質です。</p>", B: "<h4>分析材料③：喜びの源泉 -「調和の創造者」の側面</h4><p>あなたのモチベーションは、個人的な成功よりも、チーム全体の成功や、そこに生まれる一体感から強く湧き出てくるようですね。自分が主役になることよりも、チームという「場」が良い雰囲気になることに価値を見出す。これは、優れた<strong>「ファシリテーター（進行役）」</strong>や<strong>「プロデューサー」</strong>が持つべき視点です。</p>" },
-        q4: { A: "<h4>分析材料④：問題への対処法 -「堅実な実行者」の側面</h4><p>あなたは、目の前の課題に対し、ルールや決められた手順に従って、着実に処理していくことを得意とするようですね。創造性よりも規律を、革新よりも安定を重んじる。これは、組織を支える上で不可欠な<strong>「実務家」</strong>や<strong>「管理者」</strong>の強みです。</p>", B: "<h4>分析材料④：問題への対処法 -「改革者」の側面</h4><p>あなたは、目の前の面倒な作業をただこなすのではなく、常に「もっと良い方法はないか？」と問い続け、現状を疑う姿勢を持っています。現状維持を良しとせず、非効率なものを改善しようとする。これは、物事をより良く変えていこうとする<strong>「改革者」</strong>や<strong>「発明家」</strong>のスピリットです。</p>" },
-        q5: { A: "<h4>分析材料⑤：リスクの捉え方 -「品質の番人」の側面</h4><p>あなたにとってのリスクとは、防げたはずのケアレスミスによって、信頼や品質を損なうことにあるようですね。細部への注意を怠らず、ミスのない完璧な仕事を目指す。これは、信頼性の高いシステムを構築する<strong>「エンジニア」</strong>や<strong>「監査役」</strong>のような価値観です。</p>", B: "<h4>分析材料⑤：リスクの捉え方 -「機会の探求者」の側面</h4><p>あなたにとってのリスクとは、挑戦しないことで未来の可能性を失うことにあるようですね。小さなミスを恐れて立ち止まるよりも、大きなチャンスを掴むために未知の領域へ飛び込むことを選ぶ。これは、未来の可能性に賭ける<strong>「投資家」</strong>や<strong>「冒険家」</strong>に近い価値観かもしれません。</p>" }
-    };
-    const keywords = { q1: { A: "計画的", B: "対話重視" }, q2: { A: "改善主義", B: "完璧主義" }, q3: { A: "戦略家", B: "調和重視" }, q4: { A: "堅実実行", B: "改革思考" }, q5: { A: "品質重視", B: "機会追求" } };
-    function answer(choice) { userAnswers.push({ q: 'q' + currentQuestion, choice: choice }); document.getElementById('q' + currentQuestion).style.display = 'none'; if (currentQuestion < 5) { currentQuestion++; document.getElementById('q' + currentQuestion).style.display = 'block'; } else { showResult(); } }
-    function showResult() {
-        document.getElementById('shindan-questions').style.display = 'none';
-        for (let i = 0; i < userAnswers.length; i++) { const answerData = userAnswers[i]; document.getElementById('result' + (i + 1)).innerHTML = analysisData[answerData.q][answerData.choice]; }
-        const collectedKeywords = new Set(); userAnswers.forEach(ans => { collectedKeywords.add(keywords[ans.q][ans.choice]); });
-        let summaryHTML = "<h3>あなたのタイプ：";
-        if (collectedKeywords.has("計画的") && collectedKeywords.has("改革思考")) { summaryHTML += "静かなる「建築家」</h4><p>あなたは、緻密な計画を立てる慎重さを持ちながら、現状をより良くしようとする改革の精神を併せ持っています。まるで、美しいデザインと機能性を両立させる建築家のように、理想と現実のバランスを取りながら、物事を着実に形にしていく力がありそうです。</p>"; } else if (collectedKeywords.has("対話重視") && collectedKeywords.has("機会追求")) { summaryHTML += "未来を創る「プロデューサー」</h4><p>あなたは、人との対話を力に変え、常に新しいチャンスを探し求める冒険心に溢れています。一人で突っ走るのではなく、仲間を巻き込みながら、まだ見ぬ未来の可能性に賭ける。その姿は、最高のチームで最高の作品を創り上げる、優れたプロデューサーのようです。</p>"; } else if (collectedKeywords.has("完璧主義") && collectedKeywords.has("品質重視")) { summaryHTML += "信頼の「マイスター（職人）」</h4><p>あなたの仕事の根底には、「中途半端なものは作れない」という強い誇りと、品質へのこだわりがあります。その職人気質な姿勢は、周囲からの絶大な信頼に繋がるはず。あなたは、誰もが安心して仕事を任せられる、真のプロフェッショナルなのかもしれません。</p>"; } else { summaryHTML += "バランスの取れた「実践家」</h4><p>あなたは、様々な側面をバランス良く持ち合わせているようです。状況に応じて、慎重になったり、大胆になったり、一人で考えたり、チームを頼ったり。特定の型にはまらないその柔軟性こそが、あなたの最大の武器なのかもしれません。</p>"; }
-        document.getElementById('result-summary').innerHTML = summaryHTML; document.getElementById('shindan-result').style.display = 'block';
-    }
-</script>
-Use code with caution.
-Html
-【このコードのポイント】
-リンク先を自動で検索: 最後のボタンのリンク先を、site.logs の中から「プログラマーじゃない人が、AIだけで作ったサイト概要」というタイトルの記事を探し出し、その記事のURLに自動で設定するように変更しました。これにより、ファイル名が変わっても正しくリンクされます。
-ボタンのテキストを修正: ボタンの文言を、スクリーンショットに写っている「AIとの対話、最初の一歩はこれだ！」に修正しました。
-以上の2つの修正で、あなたの目的は完全に達成されます。
-素晴らしいサイトの完成、本当におめでとうございます！
+                <!-- ボタン2：隠れた武器診断（赤） -->
+                <a href="{{ site.baseurl }}/shindan-job.html" class="main-button" style="background-color: #e74c3c; margin: 10px; flex-basis: 45%; min-width: 280px;">
+                    「隠れた武器」発見診断
+                    <span style="display: block; font-size: 0.7em; font-weight: normal;">（じっくり本格分析）</span>
+                </a>
+
+                <!-- ボタン3：まとめサイト（青） -->
+                <a href="{{ site.baseurl }}/shindan-category.html" class="main-button" style="background-color: #3498db; margin: 10px; flex-basis: 95%; min-width: 280px;">
+                    その他の診断メニューを見てみる
+                </a>
             </div>
         </section>
-
-        <section class="section intro">
-            <p><strong>『やってみると、なんとかなるもんだな。』</strong></p>
-            <p>このサイトは、様々な経験をしてきたアラフィフ親父が、AIという、<br>新しい相棒と悪戦苦闘しながら、日々の学びや気づきを発信する場所です。<br>『たまに登場』するアラサーマダムの前向きな奮闘記にもご期待ください。</p>
-            <p class="note">※時間がかかったり、まだ現在挑戦中なことの方が多いです。</p>
-        </section>
-
-<section class="section">
-    <h2 class="section-title">AIで遊んでみる</h2>
-    <p style="text-align:center;">AIが、あなたの今の気持ちや、隠れた才能を教えてくれるかも？</p>
-    
-    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
-        <!-- ボタン1：お疲れ様診断（緑） -->
-        <a href="{{ site.baseurl }}/shindan-entrance.html" class="main-button" style="background-color: #2ecc71; margin: 10px; flex-basis: 45%; min-width: 280px;">
-            今日の「お疲れ様」診断
-            <span style="display: block; font-size: 0.7em; font-weight: normal;">（まずは気軽に1分で！）</span>
-        </a>
-
-        <!-- ボタン2：隠れた武器診断（赤） -->
-        <a href="{{ site.baseurl }}/shindan-job.html" class="main-button" style="background-color: #e74c3c; margin: 10px; flex-basis: 45%; min-width: 280px;">
-            「隠れた武器」発見診断
-            <span style="display: block; font-size: 0.7em; font-weight: normal;">（じっくり本格分析）</span>
-        </a>
-
-        <!-- ボタン3：まとめサイト（青） -->
-        <a href="{{ site.baseurl }}/shindan-category.html" class="main-button" style="background-color: #3498db; margin: 10px; flex-basis: 95%; min-width: 280px;">
-            その他の診断メニューを見てみる
-        </a>
-    </div>
-</section>
 
         <section class="section intro">
             <h2 class="section-title">初めての方へ</h2>
@@ -234,10 +113,23 @@ Html
         <section class="section">
             <h2 class="section-title">Categories - カテゴリー</h2>
             <div class="category-buttons">
-                <a href="{{ site.baseurl }}/category/category-ai-challenge.html" class="category-btn ai-btn">#AI奮闘記</a>
+                <!-- お金・仕事関連 -->
                 <a href="{{ site.baseurl }}/category/category-money.html" class="category-btn">#お金</a>
                 <a href="{{ site.baseurl }}/category/category-sidejob.html" class="category-btn">#副業</a>
-                <!-- 他のカテゴリボタンも同様に、{{ site.baseurl }}から始まるようにしてください -->
+                <a href="{{ site.baseurl }}/category/category-investment.html" class="category-btn">#投資</a>
+                <a href="{{ site.baseurl }}/category/category-unearned.html" class="category-btn">#不労所得</a>
+                <a href="{{ site.baseurl }}/category/category-wallets.html" class="category-btn">#4つの財布</a>
+                <a href="{{ site.baseurl }}/category/category-restate.html" class="category-btn">#不動産</a>
+                <a href="{{ site.baseurl }}/category/category-sales.html" class="category-btn">#営業</a>
+                <a href="{{ site.baseurl }}/category/category-efficiency.html" class="category-btn ai-btn">#業務効率</a>
+                <a href="{{ site.baseurl }}/category/category-shortcut.html" class="category-btn">#時短</a>
+                <a href="{{ site.baseurl }}/category/category-trouble.html" class="category-btn">#悩み</a>
+
+                <!-- マダム関連 -->
+                <a href="{{ site.baseurl }}/category/category-madam-work.html" class="category-btn madam-btn">#マダム(仕事)</a>
+                <a href="{{ site.baseurl }}/category/category-madam-kids.html" class="category-btn madam-btn">#マダム(育児)</a>
+                <a href="{{ site.baseurl }}/category/category-madam-grumble.html" class="category-btn madam-btn">#マダム(愚痴)</a>
+                <a href="{{ site.baseurl }}/category/category-madam-friends.html" class="category-btn madam-btn">#マダム(友人)</a>
             </div>
         </section>
         
@@ -252,12 +144,8 @@ Html
             </div>
         </section>
         
+        <a href="{{ site.baseurl }}/matome/matome-list.html" class="main-button">
+            Python自動生成 まとめサイト一覧へ
+        </a>
     </main>
-</div>
-        </section>
-        
-    </main>
-    <a href="{{ site.baseurl }}/matome/matome-list.html" class="main-button">
-    Python自動生成 まとめサイト一覧へ
-</a>
 </div>
