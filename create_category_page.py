@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------
-# 【究極版 final】Jekyllコレクション対応！全自動カテゴリページ生成プログラム
+# 【最終版】Jekyllコレクション対応！全自動カテゴリページ生成プログラム
 # ----------------------------------------------------------------
 import os
 import glob
@@ -8,7 +8,7 @@ from datetime import datetime
 
 # --- 1. 設定項目 ---
 
-# ★★★ あなたが減らした、最新のカテゴリリストです ★★★
+# ★★★ あなたの最新のカテゴリリストです ★★★
 CATEGORIES_TO_CREATE = {
     'AI奮闘記': 'category-ai-challenge.html',
     'お金': 'category-money.html',
@@ -46,8 +46,10 @@ def find_relevant_posts(keyword, collection_folders):
             print(f"  [警告] フォルダ '{folder}' が見つかりません。スキップします。")
             continue
 
-        md_files = glob.glob(os.path.join(folder, "*.md"))
-        for filepath in md_files:
+        # ★★★ ここが最重要修正点！ .md ではなく .html を探すように変更 ★★★
+        html_files = glob.glob(os.path.join(folder, "*.html"))
+        
+        for filepath in html_files:
             try:
                 with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
                     content = f.read()
@@ -59,15 +61,18 @@ def find_relevant_posts(keyword, collection_folders):
                     title_match = re.search(r'title:\s*["\']?(.*?)["\']?\s*$', parts[1], re.MULTILINE)
                     title = title_match.group(1) if title_match else "タイトル不明"
 
+                    # ★★★ ここも修正！ URL生成時に .html を削除するように変更 ★★★
                     date_str_match = re.search(r'(\d{4}-\d{2}-\d{2})', os.path.basename(filepath))
                     if date_str_match:
                         date_str = date_str_match.group(1)
                         post_date = datetime.strptime(date_str, "%Y-%m-%d")
-                        post_url = f"/{folder.replace('_','')}/{os.path.basename(filepath).replace('.md','')}/"
                     else: 
-                        post_date = datetime.now()
-                        post_url = f"/{folder.replace('_','')}/{os.path.basename(filepath).replace('.md','/')}"
+                        post_date = datetime.fromtimestamp(os.path.getmtime(filepath))
 
+                    # 拡張子を取り除いてURLを生成
+                    post_url_base = os.path.splitext(os.path.basename(filepath))[0]
+                    post_url = f"/{folder.replace('_','/')}/{post_url_base}/"
+                    
                     found_posts.append({ 'title': title, 'url': post_url, 'date': post_date })
                     print(f"  [発見！] -> {filepath}")
             except Exception as e:
@@ -81,19 +86,21 @@ def create_category_page_for_jekyll(keyword, posts_data, output_filepath):
     
     front_matter = f"""---
 layout: default
-title: 「{keyword}」に関する記事一覧
+title: 「{keyword}」に関する記事まとめ
 class: archive-page
 ---
 """
     
+    # ★★★ ここも修正！ リンクの構文を修正 ★★★
     cards_html = "<ul class='archive-list'>"
     if not posts_data:
         cards_html += "<li><p>このカテゴリに関連する記事はまだありません。</p></li>"
     else:
         for post in posts_data:
+            # post.url は /collection/filename/ の形式になっている
             cards_html += f"""
             <li>
-                <a href="{{{{ site.baseurl }}}}{{post.url}}">
+                <a href="{{{{ '{post['url']}' | relative_url }}}}">
                     <span class="post-title">{post['title']}</span>
                     <span class="post-date">{post['date'].strftime('%Y年%m月%d日')}</span>
                 </a>
@@ -107,6 +114,9 @@ class: archive-page
         <h1>「{keyword}」に関する記事まとめ</h1>
     </header>
     {cards_html}
+    <div class="back-link" style="text-align: center; margin-top: 50px;">
+        <a href="{{{{ '/' | relative_url }}}}" class="back-button">« トップページに戻る</a>
+    </div>
 </div>
 """
     
