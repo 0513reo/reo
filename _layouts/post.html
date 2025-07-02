@@ -1,40 +1,48 @@
 ---
 layout: default
 ---
-<div class="container blog-post" style="max-width: 850px;">
+<div class="container blog-post" style="max-width: 850px; margin: 20px auto; background-color: white; padding: 20px 40px 40px 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+
     <header style="text-align:center; margin-bottom: 20px;">
-        <h1 style="font-size: 2.2em; border-bottom: 2px solid #eee; padding-bottom:10px; margin-bottom: 5px;">{{ page.title }}</h1>
+        <h1 style="font-size: 2.2em; border-bottom: 2px solid #4a90e2; padding-bottom:10px; margin-bottom: 40px; color: #1e3a5f;">{{ page.title }}</h1>
     </header>
 
     <div class="content">
         {{ content }}
     </div>
     
-    <!-- ★★★ ここからが修正されたナビゲーションコード ★★★ -->
+    <!-- ★★★ ここからが【完全修正版】のナビゲーションコード ★★★ -->
     <div class="navigation-links" style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
         {% assign collection_name = page.collection %}
         {% if collection_name %}
             
-            <!-- まず、非表示ではない記事だけをフィルタリングして新しいリストを作成 -->
+            <!-- まず、非表示ではない記事だけをフィルタリングして、日付順に並べたリストを作成 -->
             {% assign visible_posts = site[collection_name] | where_exp:"item", "item.hidden != true" | sort: 'date' %}
 
+            <!-- このリストの中から、現在の記事が何番目かを探し、その前後の記事を取得する -->
             {% for post in visible_posts %}
                 {% if post.url == page.url %}
-                    {% assign current_index = forloop.index0 %}
+                    {% assign prev_post_index = forloop.index0 | minus: 1 %}
+                    {% if prev_post_index >= 0 %}
+                        {% assign prev_post = visible_posts[prev_post_index] %}
+                    {% endif %}
+
+                    {% assign next_post_index = forloop.index0 | plus: 1 %}
+                    {% if next_post_index < visible_posts.size %}
+                        {% assign next_post = visible_posts[next_post_index] %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
-
-            {% assign prev_post = visible_posts[current_index | minus: 1] %}
-            {% assign next_post_index = current_index | plus: 1 %}
-            {% if next_post_index < visible_posts.size %}
-                {% assign next_post = visible_posts[next_post_index] %}
-            {% endif %}
 
             <div class="prev-link" style="width: 45%; text-align: left;">
                 {% if prev_post %}
                     <a href="{{ prev_post.url | relative_url }}" class="read-more-btn">« {{ prev_post.title }}</a>
+                {% else %}
+                    <!-- 前の記事がない場合は、スペースを確保するために空のdivを置く -->
+                    <div></div>
                 {% endif %}
             </div>
+
             <div class="next-link" style="width: 45%; text-align: right;">
                 {% if next_post %}
                     <a href="{{ next_post.url | relative_url }}" class="read-more-btn">{{ next_post.title }} »</a>
