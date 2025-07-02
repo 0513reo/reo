@@ -49,13 +49,24 @@ title: "あなたの仕事における「隠れた武器」発見診断"
             <p>AIの本当の得意分野は、ここからの<strong>『対話による深掘り』</strong>です。<br>今日の分析結果を元に、「なぜ自分はそう考えるんだろう？」と問いかけたり、視点を変えた質問を投げかけたりすることで、AIはあなたの思考を整理し、磨き上げるための、最高のパートナーになります。</p>
             <p>もし、あなたが「もっと自分を知りたい」「AIという道具を使いこなしてみたい」と思われたなら。<br>ぜひ一度、ChatGPTやGeminiに、今日のこの結果を伝えて、話しかけてみてください。</p>
             <p style="font-weight: bold; font-size: 1.2em;">世界が変わるかもしれませんよ。</p>
-            <a href="{{ site.baseurl }}/logs-archive.html" class="main-button" style="display:inline-block; width:auto; margin-top: 20px;">AIと悪戦苦闘した記録を見てみる</a>
+            
+            <!-- ★★★ 正しい記事へのリンクとボタンテキスト ★★★ -->
+            {% assign target_post_title = "プログラマーじゃない人が、AIだけで作ったサイト概要" %}
+            {% assign target_post = site.logs | where:"title", target_post_title | first %}
+            {% if target_post %}
+            <a href="{{ target_post.url | relative_url }}" class="main-button" style="display:inline-block; width:auto; margin-top: 20px;">AIとの対話、最初の一歩はこれだ！</a>
+            {% else %}
+            <!-- 万が一見つからなかった場合でも、ログ一覧には飛べるようにしておく -->
+            <a href="{{ '/logs-archive.html' | relative_url }}" class="main-button" style="display:inline-block; width:auto; margin-top: 20px;">AIと悪戦苦闘した記録を見てみる</a>
+            {% endif %}
         </div>
     </div>
 </div>
 
+<!-- ★★★ 重複を解消した、唯一の正しいJavaScriptブロック ★★★ -->
 <script>
-    let currentQuestion = 1;const userAnswers = [];
+    let currentQuestion = 1;
+    const userAnswers = [];
     const analysisData = {
         q1: { A: "<h4>分析材料①：行動の起点 -「知の探求者」の側面</h4><p>あなたは、未知の課題に直面した時、まず理論や知識で全体像を把握しようとする傾向がありますね。闇雲に動き出すのではなく、まず自分の頭の中に「地図」を描こうとする。これは、物事を体系的に捉え、確実な一歩を踏み出す<strong>「学者」や「研究者」</strong>のような資質と言えるかもしれません。</p>", B: "<h4>分析材料①：行動の起点 -「実践的対話者」の側面</h4><p>あなたは、未知の課題に直面した時、一人で考え込むよりも、まず人に会い、対話の中から答えを見つけ出そうとする傾向がありますね。知識よりも経験を、理論よりも現場の声を重視する。これは、人との繋がりを力に変える<strong>「コミュニケーター」</strong>や<strong>「ジャーナリスト」</strong>のような資質と言えるかもしれません。</p>" },
         q2: { A: "<h4>分析材料②：完成の定義 -「改善主義者」の側面</h4><p>あなたは、完璧なものを一度で作り上げるよりも、不完全でもまず形にし、他者からのフィードバックを得て改善していくことを是とするスタイルのようです。これは、失敗を恐れず、対話の中からより良い答えを見つけ出そうとする、柔軟で<strong>アジャイル（俊敏）な開発者</strong>のような思考パターンです。</p>", B: "<h4>分析材料②：品質の追求者 -「職人」の側面</h4><p>あなたは、自分の仕事に高いプライドを持ち、中途半端な状態で世に出すことを良しとしない傾向がありますね。時間に追われても、守るべき品質のラインは譲らない。これは、自らの成果物に責任を持つ、プロフェッショナルな<strong>「職人」</strong>のようなスピリットです。</p>" },
@@ -63,14 +74,38 @@ title: "あなたの仕事における「隠れた武器」発見診断"
         q4: { A: "<h4>分析材料④：問題への対処法 -「堅実な実行者」の側面</h4><p>あなたは、目の前の課題に対し、ルールや決められた手順に従って、着実に処理していくことを得意とするようですね。創造性よりも規律を、革新よりも安定を重んじる。これは、組織を支える上で不可欠な<strong>「実務家」</strong>や<strong>「管理者」</strong>の強みです。</p>", B: "<h4>分析材料④：問題への対処法 -「改革者」の側面</h4><p>あなたは、目の前の面倒な作業をただこなすのではなく、常に「もっと良い方法はないか？」と問い続け、現状を疑う姿勢を持っています。現状維持を良しとせず、非効率なものを改善しようとする。これは、物事をより良く変えていこうとする<strong>「改革者」</strong>や<strong>「発明家」</strong>のスピリットです。</p>" },
         q5: { A: "<h4>分析材料⑤：リスクの捉え方 -「品質の番人」の側面</h4><p>あなたにとってのリスクとは、防げたはずのケアレスミスによって、信頼や品質を損なうことにあるようですね。細部への注意を怠らず、ミスのない完璧な仕事を目指す。これは、信頼性の高いシステムを構築する<strong>「エンジニア」</strong>や<strong>「監査役」</strong>のような価値観です。</p>", B: "<h4>分析材料⑤：リスクの捉え方 -「機会の探求者」の側面</h4><p>あなたにとってのリスクとは、挑戦しないことで未来の可能性を失うことにあるようですね。小さなミスを恐れて立ち止まるよりも、大きなチャンスを掴むために未知の領域へ飛び込むことを選ぶ。これは、未来の可能性に賭ける<strong>「投資家」</strong>や<strong>「冒険家」</strong>に近い価値観かもしれません。</p>" }
     };
-    const keywords = { q1: { A: "計画的", B: "対話重視" }, q2: { A: "改善主義", B: "完璧主義" }, q3: { A: "戦略家", B: "調和重視" }, q4: { A: "堅実実行", B: "改革思考" }, q5: { A: "品質重視", B: "機会追求" } };
-    function answer(choice) { userAnswers.push({ q: 'q' + currentQuestion, choice: choice }); document.getElementById('q' + currentQuestion).style.display = 'none'; if (currentQuestion < 5) { currentQuestion++; document.getElementById('q' + currentQuestion).style.display = 'block'; } else { showResult(); } }
+    const keywords = {
+        q1: { A: "計画的", B: "対話重視" }, q2: { A: "改善主義", B: "完璧主義" }, q3: { A: "戦略家", B: "調和重視" }, q4: { A: "堅実実行", B: "改革思考" }, q5: { A: "品質重視", B: "機会追求" }
+    };
+    function answer(choice) {
+        userAnswers.push({ q: 'q' + currentQuestion, choice: choice });
+        document.getElementById('q' + currentQuestion).style.display = 'none';
+        if (currentQuestion < 5) {
+            currentQuestion++;
+            document.getElementById('q' + currentQuestion).style.display = 'block';
+        } else {
+            showResult();
+        }
+    }
     function showResult() {
         document.getElementById('shindan-questions').style.display = 'none';
-        for (let i = 0; i < userAnswers.length; i++) { const answerData = userAnswers[i]; document.getElementById('result' + (i + 1)).innerHTML = analysisData[answerData.q][answerData.choice]; }
-        const collectedKeywords = new Set(); userAnswers.forEach(ans => { collectedKeywords.add(keywords[ans.q][ans.choice]); });
+        for (let i = 0; i < userAnswers.length; i++) {
+            const answerData = userAnswers[i];
+            document.getElementById('result' + (i + 1)).innerHTML = analysisData[answerData.q][answerData.choice];
+        }
+        const collectedKeywords = new Set();
+        userAnswers.forEach(ans => { collectedKeywords.add(keywords[ans.q][ans.choice]); });
         let summaryHTML = "<h3>あなたのタイプ：";
-        if (collectedKeywords.has("計画的") && collectedKeywords.has("改革思考")) { summaryHTML += "静かなる「建築家」</h4><p>あなたは、緻密な計画を立てる慎重さを持ちながら、現状をより良くしようとする改革の精神を併せ持っています。まるで、美しいデザインと機能性を両立させる建築家のように、理想と現実のバランスを取りながら、物事を着実に形にしていく力がありそうです。</p>"; } else if (collectedKeywords.has("対話重視") && collectedKeywords.has("機会追求")) { summaryHTML += "未来を創る「プロデューサー」</h4><p>あなたは、人との対話を力に変え、常に新しいチャンスを探し求める冒険心に溢れています。一人で突っ走るのではなく、仲間を巻き込みながら、まだ見ぬ未来の可能性に賭ける。その姿は、最高のチームで最高の作品を創り上げる、優れたプロデューサーのようです。</p>"; } else if (collectedKeywords.has("完璧主義") && collectedKeywords.has("品質重視")) { summaryHTML += "信頼の「マイスター（職人）」</h4><p>あなたの仕事の根底には、「中途半端なものは作れない」という強い誇りと、品質へのこだわりがあります。その職人気質な姿勢は、周囲からの絶大な信頼に繋がるはず。あなたは、誰もが安心して仕事を任せられる、真のプロフェッショナルなのかもしれません。</p>"; } else { summaryHTML += "バランスの取れた「実践家」</h4><p>あなたは、様々な側面をバランス良く持ち合わせているようです。状況に応じて、慎重になったり、大胆になったり、一人で考えたり、チームを頼ったり。特定の型にはまらないその柔軟性こそが、あなたの最大の武器なのかもしれません。</p>"; }
-        document.getElementById('result-summary').innerHTML = summaryHTML; document.getElementById('shindan-result').style.display = 'block';
+        if (collectedKeywords.has("計画的") && collectedKeywords.has("改革思考")) {
+            summaryHTML += "静かなる「建築家」</h4><p>あなたは、緻密な計画を立てる慎重さを持ちながら、現状をより良くしようとする改革の精神を併せ持っています。まるで、美しいデザインと機能性を両立させる建築家のように、理想と現実のバランスを取りながら、物事を着実に形にしていく力がありそうです。</p>";
+        } else if (collectedKeywords.has("対話重視") && collectedKeywords.has("機会追求")) {
+            summaryHTML += "未来を創る「プロデューサー」</h4><p>あなたは、人との対話を力に変え、常に新しいチャンスを探し求める冒険心に溢れています。一人で突っ走るのではなく、仲間を巻き込みながら、まだ見ぬ未来の可能性に賭ける。その姿は、最高のチームで最高の作品を創り上げる、優れたプロデューサーのようです。</p>";
+        } else if (collectedKeywords.has("完璧主義") && collectedKeywords.has("品質重視")) {
+            summaryHTML += "信頼の「マイスター（職人）」</h4><p>あなたの仕事の根底には、「中途半端なものは作れない」という強い誇りと、品質へのこだわりがあります。その職人気質な姿勢は、周囲からの絶大な信頼に繋がるはず。あなたは、誰もが安心して仕事を任せられる、真のプロフェッショナルなのかもしれません。</p>";
+        } else {
+            summaryHTML += "バランスの取れた「実践家」</h4><p>あなたは、様々な側面をバランス良く持ち合わせているようです。状況に応じて、慎重になったり、大胆になったり、一人で考えたり、チームを頼ったり。特定の型にはまらないその柔軟性こそが、あなたの最大の武器なのかもしれません。</p>";
+        }
+        document.getElementById('result-summary').innerHTML = summaryHTML;
+        document.getElementById('shindan-result').style.display = 'block';
     }
 </script>
