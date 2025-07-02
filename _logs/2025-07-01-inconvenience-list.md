@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: "【アラフィフおやじのボヤキ】AIで解決したい、日常の『不便』トップ10"
 collection: "logs"
 ---
