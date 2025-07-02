@@ -2,6 +2,8 @@
 layout: default
 title: "プログラマーじゃない人が、AIだけで作ったサイト概要"
 collection: "logs"
+date: 2025-07-02 10:00:00 +0900
+hidden: true
 ---
 <div class="container blog-post">
     <header style="text-align:center; margin-bottom: 20px;">
@@ -33,7 +35,12 @@ collection: "logs"
         最初の一歩は、『無理難題をAIに投げてください。』、みんなの知恵で、自分が『楽になるものが出てきたら』これほど嬉しいことはありませんｗ</p>
     </div>
     
-    <div class="back-link" style="text-align: center; margin-top: 50px;">
-        <a href="{{ site.baseurl }}/" class="main-button" style="display:inline-block; width:auto;">« トップページに戻る</a>
+    <!-- ★★★ ここにログ一覧へのリンクを追加しました ★★★ -->
+    <div class="back-link" style="text-align: center; margin-top: 30px;">
+        <a href="{{ '/logs-archive.html' | relative_url }}" class="read-more-btn">« 挑戦の記録一覧へ戻る</a>
+    </div>
+
+    <div class="back-link" style="text-align: center; margin-top: 20px;">
+        <a href="{{ '/' | relative_url }}" class="main-button" style="display:inline-block; width:auto;">« トップページに戻る</a>
     </div>
 </div>

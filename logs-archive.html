@@ -1,21 +1,37 @@
 ---
 layout: default
-title: 挑戦の記録 全ログ
+title: "Our Logs - 挑戦の記録"
 class: archive-page
 ---
+
 <div class="container">
     <header class="section-title">
         <h1>Our Logs - 挑戦の記録</h1>
-        <p class="archive-description">日々の試行錯誤、エラーとの戦い、そして新しい発見。すべてのログをここに記録します。</p>
     </header>
+    <p class="archive-description">
+        日々の試行錯誤、エラーとの戦い、そして新しい発見。すべてのログをここに記録します。
+    </p>
+
     <ul class="archive-list">
-        {% for post in site.logs reversed %}
-             <li>
+        {% assign sorted_logs = site.logs | sort: 'date' | reverse %}
+        {% for post in sorted_logs %}
+            
+            <!-- ★★★ ここが重要！「hidden: true」を持つ記事を一覧から除外します ★★★ -->
+            {% if post.hidden != true %}
+            <li>
                 <a href="{{ post.url | relative_url }}">
                     <span class="post-title">{{ post.title }}</span>
-                    <span class="post-date">{{ post.date | date: "%Y年%m月%d日" }}</span>
+                    {% if post.date %}
+                        <span class="post-date">{{ post.date | date: "%Y年%m月%d日" }}</span>
+                    {% endif %}
                 </a>
             </li>
+            {% endif %}
+
         {% endfor %}
     </ul>
+
+    <div class="back-link" style="text-align: center; margin-top: 50px;">
+        <a href="{{ '/' | relative_url }}" class="main-button" style="display:inline-block; width:auto;">« トップページに戻る</a>
+    </div>
 </div>
